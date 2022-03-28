@@ -56,6 +56,11 @@
   font: inherit;
   cursor: pointer;
   outline: inherit;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
 }
 
 .profile__add-button_container {
@@ -63,10 +68,22 @@
 }
 
 .profile__add-button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
   padding: 14px 64px 14px 64px;
   border: 2px solid #ffffff;
   box-sizing: border-box;
   border-radius: 2px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.profile__add-button:hover {
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 600px) {

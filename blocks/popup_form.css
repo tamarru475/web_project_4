@@ -38,6 +38,13 @@
   cursor: pointer;
   outline: inherit;
   max-width: 40px;
+  transition: opacity 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+
+.popup__close-button:hover {
+  opacity: 0.6;
+  transform: rotate(45deg);
 }
 
 .popup__form-container {
@@ -128,6 +135,11 @@
   outline: inherit;
   min-height: 50.15px;
   width: 358px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.form__button:hover {
+  opacity: 0.8;
 }
 
 @media screen and (max-width: 600px) {
