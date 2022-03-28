@@ -4,6 +4,12 @@
   position: relative;
 }
 
+@media screen and (max-width: 960px) {
+  .main {
+    max-width: 768px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .main {
     max-width: 282px;
