@@ -1,12 +1,12 @@
 .gallery__card {
-  max-width: 100%;
+  max-width: 282px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  display: block;
 }
 
 .card__image {
+  display: block;
   max-width: 282px;
   width: 282px;
   min-height: 282px;

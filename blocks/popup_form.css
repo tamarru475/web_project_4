@@ -139,9 +139,12 @@
     width: 282px;
   }
 
+  .popup_close-button_container {
+    padding-bottom: 13.5px;
+  }
+
   .popup__close-button {
     max-width: 26px;
-    width: 26px;
   }
 
   .popup__form-container {
@@ -151,6 +154,7 @@
   .popup__header {
     font-size: 18px;
     line-height: 22px;
+    padding-left: 22px;
   }
 
   .popup__form {
