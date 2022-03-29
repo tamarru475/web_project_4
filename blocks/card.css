@@ -1,8 +1,5 @@
 .gallery__card {
   max-width: 282px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .card__image {
@@ -40,6 +37,9 @@
   padding-top: 25px;
   padding-left: 21px;
   padding-bottom: 31px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .card__like-button {
