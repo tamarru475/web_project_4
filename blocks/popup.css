@@ -12,7 +12,7 @@
   height: 100vh;
 }
 
-.popup__active {
+.popup_active {
   display: flex;
 }
 

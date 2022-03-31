@@ -4,7 +4,7 @@ let popupClosebutton = popup.querySelector(".popup__close-button");
 let popupForm = document.querySelector(".form");
 
 function openPopup() {
-  popup.classList.add("popup__active");
+  popup.classList.add("popup_active");
 
   let nameInput = document.getElementById("name");
 
@@ -18,7 +18,7 @@ function openPopup() {
 }
 
 function closePopup() {
-  popup.classList.remove("popup__active");
+  popup.classList.remove("popup_active");
 }
 
 function handleProfileFormSubmit(evt) {
@@ -34,7 +34,7 @@ function handleProfileFormSubmit(evt) {
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
 
-  popup.classList.remove("popup__active");
+  popup.classList.remove("popup_active");
 }
 
 profileEditbutton.addEventListener("click", openPopup);
