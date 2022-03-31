@@ -1,10 +1,12 @@
 .gallery {
-  max-width: 100%;
-  margin: 0 auto;
+  max-width: 880px;
+  margin-top: 50px;
+  display: flex;
 }
 
 .gallery__container {
-  margin-top: 50px;
+  max-width: 100%;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -12,15 +14,83 @@
   padding: 0;
 }
 
+.gallery__card {
+  max-width: 282px;
+}
+
+.gallery__card-image {
+  display: block;
+  max-width: 282px;
+  width: 282px;
+  min-height: 282px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.gallery__card-footer {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.gallery__card-place {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: black;
+  padding-top: 25px;
+  padding-left: 21px;
+  padding-bottom: 31px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.gallery__card-like_button {
+  display: inline-block;
+  background: url(../images/like_button.svg) no-repeat center/cover;
+  color: inherit;
+  border: none;
+  width: 21px;
+  height: 19px;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  align-self: center;
+  margin-right: 15px;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.gallery__card-like_button:hover {
+  opacity: 0.5;
+}
+.cgallery__ard_-ike_button_active {
+  background-color: black;
+}
+
 @media screen and (max-width: 960px) {
   .gallery {
     max-width: 720px;
+    margin: 0 auto;
   }
 
   .gallery__container {
+    margin-top: 50px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(3, 1fr);
-    gap: 17px 0px;
+    gap: 17px 20px;
   }
 }
 

@@ -10,9 +10,7 @@
   <body>
     <div class="page">
       <header class="header">
-        <div class="header__logo-container">
-          <img src="./images/logo.svg" alt="Around The U.S" class="logo" />
-        </div>
+        <img src="./images/logo.svg" alt="Around The U.S" class="logo" />
       </header>
       <main class="main">
         <section class="profile">
@@ -24,47 +22,33 @@
             />
             <div class="profile__info">
               <h1 class="profile__name" id="profile-name">Jacques Cousteau</h1>
-              <button type="button" class="profile__edit-button">
-                <img src="./images/Edit_Button.svg" alt="edit" />
-              </button>
+              <button type="button" class="profile__edit-button"></button>
               <p class="profile__name-discription" id="profile-job">Explorer</p>
             </div>
           </div>
-          <div class="profile__add-button_container">
-            <button type="button" class="profile__add-button">
-              <img src="./images/add__vectot.svg" alt="add" />
-            </button>
-          </div>
+          <button type="button" class="profile__add-button"></button>
         </section>
         <section class="popup" id="popup">
           <div class="popup__container">
-            <div class="popup_close-button_container">
-              <button type="button" class="popup__close-button">
-                <img
-                  src="./images/Close_Icon.svg"
-                  alt="close"
-                  class="popup__close"
-                />
-              </button>
-            </div>
+            <button type="button" class="popup__close-button"></button>
             <div class="popup__form-container">
               <h2 class="popup__header">Edit profile</h2>
-              <form class="popup__form">
+              <form class="popup__form form" name="form">
                 <fieldset class="form__fieldset">
                   <input
-                    class="form__input form__input-name"
+                    class="form__input"
                     type="text"
                     id="name"
                     placeholder="Jacques Cousteau"
-                    value="Jacques Cousteau"
+                    name="name"
                     required
                   />
                   <input
-                    class="form__input form__input-job"
+                    class="form__input"
                     type="text"
                     id="job"
                     placeholder="Explorer"
-                    value="Explorer"
+                    name="job"
                     required
                   />
                 </fieldset>
@@ -81,102 +65,84 @@
               <img
                 src="./images/Yosemite_Valley.jpg"
                 alt="yosemite valley"
-                class="card__image"
+                class="gallery__card-image"
               />
-              <div class="card__footer">
-                <h2 class="card__place">Yosemite Valley</h2>
-                <button type="button" class="card__like-button">
-                  <img
-                    src="./images/like_button.svg"
-                    alt="like-button"
-                    class="like__button"
-                  />
-                </button>
+              <div class="gallery__card-footer">
+                <h2 class="gallery__card-place">Yosemite Valley</h2>
+                <button
+                  type="button"
+                  class="gallery__card-like_button"
+                ></button>
               </div>
             </article>
-            <article class="gallery__card card">
+            <article class="gallery__card">
               <img
                 src="./images/Lake_Louise.jpg"
                 alt="Lake Louise"
-                class="card__image"
+                class="gallery__card-image"
               />
-              <div class="card__footer">
-                <h2 class="card__place">Lake Louise</h2>
-                <button type="button" class="card__like-button">
-                  <img
-                    src="./images/like_button.svg"
-                    alt="like-button"
-                    class="like__button"
-                  />
-                </button>
+              <div class="gallery__card-footer">
+                <h2 class="gallery__card-place">Lake Louise</h2>
+                <button
+                  type="button"
+                  class="gallery__card-like_button"
+                ></button>
               </div>
             </article>
-            <article class="gallery__card card">
+            <article class="gallery__card">
               <img
                 src="./images/Bald_Mountains.jpg"
                 alt="Bald Mountains"
-                class="card__image"
+                class="gallery__card-image"
               />
-              <div class="card__footer">
-                <h2 class="card__place">Bald Mountains</h2>
-                <button type="button" class="card__like-button">
-                  <img
-                    src="./images/like_button.svg"
-                    alt="like-button"
-                    class="like__button"
-                  />
-                </button>
+              <div class="gallery__card-footer">
+                <h2 class="gallery__card-place">Bald Mountains</h2>
+                <button
+                  type="button"
+                  class="gallery__card-like_button"
+                ></button>
               </div>
             </article>
-            <article class="gallery__card card">
+            <article class="gallery__card">
               <img
                 src="./images/Latemar.jpg"
                 alt="Latemar"
-                class="card__image"
+                class="gallery__card-image"
               />
-              <div class="card__footer">
-                <h2 class="card__place">Latemar</h2>
-                <button type="button" class="card__like-button">
-                  <img
-                    src="./images/like_button.svg"
-                    alt="like-button"
-                    class="like__button"
-                  />
-                </button>
+              <div class="gallery__card-footer">
+                <h2 class="gallery__card-place">Latemar</h2>
+                <button
+                  type="button"
+                  class="gallery__card-like_button"
+                ></button>
               </div>
             </article>
-            <article class="gallery__card card">
+            <article class="gallery__card">
               <img
                 src="./images/Vanoise_National.jpg"
                 alt="Vanoise National Park"
-                class="card__image"
+                class="gallery__card-image"
               />
-              <div class="card__footer">
-                <h2 class="card__place">Vanoise National Park</h2>
-                <button type="button" class="card__like-button">
-                  <img
-                    src="./images/like_button.svg"
-                    alt="like-button"
-                    class="like__button"
-                  />
-                </button>
+              <div class="gallery__card-footer">
+                <h2 class="gallery__card-place">Vanoise National Park</h2>
+                <button
+                  type="button"
+                  class="gallery__card-like_button"
+                ></button>
               </div>
             </article>
-            <article class="gallery__card card">
+            <article class="gallery__card">
               <img
                 src="./images/Lago_di_Braies.jpg"
                 alt="Lago di Braies"
-                class="card__image"
+                class="gallery__card-image"
               />
-              <div class="card__footer">
-                <h2 class="card__place">Lago di Braies</h2>
-                <button type="button" class="card__like-button">
-                  <img
-                    src="./images/like_button.svg"
-                    alt="like-button"
-                    class="like__button"
-                  />
-                </button>
+              <div class="gallery__card-footer">
+                <h2 class="gallery__card-place">Lago di Braies</h2>
+                <button
+                  type="button"
+                  class="gallery__card-like_button"
+                ></button>
               </div>
             </article>
           </div>
