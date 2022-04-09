@@ -59,97 +59,7 @@
             </div>
           </div>
         </section>
-        <section class="gallery">
-          <div class="gallery__container">
-            <article class="gallery__card card">
-              <img
-                src="./images/Yosemite_Valley.jpg"
-                alt="yosemite valley"
-                class="gallery__card-image"
-              />
-              <div class="gallery__card-footer">
-                <h2 class="gallery__card-place">Yosemite Valley</h2>
-                <button
-                  type="button"
-                  class="gallery__card-like_button"
-                ></button>
-              </div>
-            </article>
-            <article class="gallery__card">
-              <img
-                src="./images/Lake_Louise.jpg"
-                alt="Lake Louise"
-                class="gallery__card-image"
-              />
-              <div class="gallery__card-footer">
-                <h2 class="gallery__card-place">Lake Louise</h2>
-                <button
-                  type="button"
-                  class="gallery__card-like_button"
-                ></button>
-              </div>
-            </article>
-            <article class="gallery__card">
-              <img
-                src="./images/Bald_Mountains.jpg"
-                alt="Bald Mountains"
-                class="gallery__card-image"
-              />
-              <div class="gallery__card-footer">
-                <h2 class="gallery__card-place">Bald Mountains</h2>
-                <button
-                  type="button"
-                  class="gallery__card-like_button"
-                ></button>
-              </div>
-            </article>
-            <article class="gallery__card">
-              <img
-                src="./images/Latemar.jpg"
-                alt="Latemar"
-                class="gallery__card-image"
-              />
-              <div class="gallery__card-footer">
-                <h2 class="gallery__card-place">Latemar</h2>
-                <button
-                  type="button"
-                  class="gallery__card-like_button"
-                ></button>
-              </div>
-            </article>
-            <article class="gallery__card">
-              <img
-                src="./images/Vanoise_National.jpg"
-                alt="Vanoise National Park"
-                class="gallery__card-image"
-              />
-              <div class="gallery__card-footer">
-                <h2 class="gallery__card-place">Vanoise National Park</h2>
-                <button
-                  type="button"
-                  class="gallery__card-like_button"
-                ></button>
-              </div>
-            </article>
-            <article class="gallery__card">
-              <img
-                src="./images/Lago_di_Braies.jpg"
-                alt="Lago di Braies"
-                class="gallery__card-image"
-              />
-              <div class="gallery__card-footer">
-                <h2 class="gallery__card-place">Lago di Braies</h2>
-                <button
-                  type="button"
-                  class="gallery__card-like_button"
-                ></button>
-              </div>
-            </article>
-          </div>
-        </section>
-      </main>
-      <template id="add__popup-template">
-        <section class="add__popup">
+        <section class="add__popup" id="add-popup">
           <div class="add__popup-container">
             <button type="button" class="add__popup-close_button"></button>
             <div class="add__popup-form_container">
@@ -180,11 +90,23 @@
             </div>
           </div>
         </section>
-      </template>
+        <section class="gallery">
+          <ul class="gallery__container"></ul>
+        </section>
+      </main>
       <footer class="footer">
         <p class="footer__copyright">@Tamar Rubin 2022</p>
       </footer>
     </div>
     <script src="./scripts/index.js"></script>
+    <template id="card-template">
+      <li class="gallery__card">
+        <div class="gallery__card-image" style=""></div>
+        <div class="gallery__card-footer">
+          <h2 class="gallery__card-place"></h2>
+          <button type="button" class="gallery__card-like_button"></button>
+        </div>
+      </li>
+    </template>
   </body>
 </html>
