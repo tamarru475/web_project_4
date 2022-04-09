@@ -1,4 +1,4 @@
-.popup {
+.add__popup {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -12,18 +12,18 @@
   height: 100vh;
 }
 
-.popup_active {
+.add__popup_active {
   display: flex;
 }
 
-.popup__container {
+.add__popup-container {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   width: 470px;
 }
 
-.popup__close-button {
+.add__popup-close_button {
   max-width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -42,12 +42,12 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.popup__close-button:hover {
+.add__popup-close_button:hover {
   opacity: 0.6;
   transform: rotate(45deg);
 }
 
-.popup__form-container {
+.add__popup-form_container {
   display: flex;
   flex-direction: column;
   align-self: flex-start;
@@ -57,7 +57,7 @@
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
 }
 
-.popup__header {
+.add__popup-header {
   margin: 0;
   font-family: "Inter", sans-serif;
   font-size: 24px;
@@ -73,25 +73,25 @@
 }
 
 @media screen and (max-width: 600px) {
-  .popup {
+  .add__popup {
     max-width: 282px;
   }
 
-  .popup__container {
+  .add__popup-container {
     width: 282px;
   }
 
-  .popup__close-button {
+  .add__popup-close_button {
     margin-bottom: 13.5px;
     width: 26px;
     height: 26px;
   }
 
-  .popup__form-container {
+  .add__popup-form_container {
     width: 100%;
   }
 
-  .popup__header {
+  .add__popup-header {
     font-size: 18px;
     line-height: 22px;
     padding-left: 22px;
