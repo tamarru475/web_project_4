@@ -2,6 +2,7 @@
   max-width: 880px;
   margin-top: 50px;
   display: flex;
+  z-index: 0;
 }
 
 .gallery__container {
@@ -16,6 +17,7 @@
 }
 
 .gallery__card {
+  position: relative;
   max-width: 282px;
 }
 
@@ -28,6 +30,32 @@
   border-top-right-radius: 10px;
   margin: 0;
   padding-bottom: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.gallery__card-trash-button {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  display: inline-block;
+  background: url(../images/trash-icon.svg) no-repeat center/cover;
+  color: inherit;
+  border: none;
+  max-width: 21px;
+  min-height: 19px;
+  width: 100%;
+  height: 19px;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  align-self: center;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.gallery__card-trash-button:hover {
+  opacity: 0.6;
 }
 
 .gallery__card-footer {
@@ -80,8 +108,9 @@
 .gallery__card-like_button:hover {
   opacity: 0.5;
 }
-.cgallery__ard_-ike_button_active {
-  background-color: black;
+
+.gallery__card-like_button_active {
+  background: url(../images/like-button_active.svg) no-repeat center/cover;
 }
 
 @media screen and (max-width: 960px) {
