@@ -47,6 +47,9 @@ const editPopupClosebutton = editPopup.querySelector(
 const profileAddButton = document.querySelector(".profile__add-button");
 const addPopupButton = addPopup.querySelector(".add__popup-close_button");
 const likeButton = cardElement.querySelector(".gallery__card-like_button");
+const imagePopupCloseButton = imagePopup.querySelector(
+  ".image__popup-close_button"
+);
 
 //wrappers///
 
@@ -117,6 +120,8 @@ function handleProfileAddFormSubmit(evt) {
     .addEventListener("click", function () {
       cardElement.remove(cardElement);
     });
+
+  cardImage.addEventListener("click", () => imagePreview(card));
 }
 
 function creatCardElement(card) {
@@ -149,6 +154,13 @@ function creatCardElement(card) {
 }
 
 const imagePreview = (card) => {
+  const imagePopupImage = imagePopup.querySelector(".image__popup-image");
+  const imagePopupDidcription = imagePopup.querySelector(
+    ".image__popup-discription"
+  );
+  imagePopupImage.src = card.link;
+  imagePopupDidcription.textContent = card.name;
+
   imagePopup.classList.add("image__popup_active");
 };
 
@@ -169,6 +181,10 @@ addPopupButton.addEventListener("click", closeAddPopup);
 editForm.addEventListener("submit", handleProfileEditFormSubmit);
 
 addForm.addEventListener("submit", handleProfileAddFormSubmit);
+
+imagePopupCloseButton.addEventListener("click", function () {
+  imagePopup.classList.remove("image__popup_active");
+});
 
 ///const removeCard = (card) => {};
 
