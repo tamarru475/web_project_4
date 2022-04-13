@@ -4,7 +4,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 100%;
-  display: none;
+  visibility: hidden;
+  opacity: 0;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -16,6 +17,18 @@
 
 .image__popup_active {
   display: flex;
+}
+
+.image__popup_fadein {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0.3s linear, opacity 0.3s linear;
+}
+
+.image__popup_fadeout {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.8s linear, opacity 0.8s linear;
 }
 
 .image__popup-container {
