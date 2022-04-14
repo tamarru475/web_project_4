@@ -1,11 +1,11 @@
-.add__popup {
+.edit {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 100%;
-  visibility: hidden;
   display: flex;
+  visibility: hidden;
   opacity: 0;
   justify-content: center;
   align-items: center;
@@ -15,32 +15,26 @@
   z-index: 5;
 }
 
-.add__popup_fadein {
+.edit__popup_fadein {
   visibility: visible;
   opacity: 1;
   transition: visibility 0.3s linear, opacity 0.3s linear;
 }
 
-.add__popup_fadeout {
-  margin: 0 auto;
+.edit__popup_fadeout {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.8s linear, opacity 0.8s linear;
-  position: fixed;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  justify-content: center;
-  align-items: center;
 }
 
-.add__popup-container {
+.edit__container {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   width: 470px;
 }
 
-.add__popup-close_button {
+.edit__close-button {
   max-width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -59,12 +53,12 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.add__popup-close_button:hover {
+.edit__close-button:hover {
   opacity: 0.6;
   transform: rotate(45deg);
 }
 
-.add__popup-form_container {
+.edit__form-container {
   display: flex;
   flex-direction: column;
   align-self: flex-start;
@@ -74,7 +68,7 @@
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
 }
 
-.add__popup-header {
+.edit__header {
   margin: 0;
   font-family: "Inter", sans-serif;
   font-size: 24px;
@@ -90,25 +84,25 @@
 }
 
 @media screen and (max-width: 600px) {
-  .add__popup {
+  .edit {
     max-width: 282px;
   }
 
-  .add__popup-container {
+  .edit__container {
     width: 282px;
   }
 
-  .add__popup-close_button {
+  .edit__close-button {
     margin-bottom: 13.5px;
     width: 26px;
     height: 26px;
   }
 
-  .add__popup-form_container {
+  .edit__form-container {
     width: 100%;
   }
 
-  .add__popup-header {
+  .edit__header {
     font-size: 18px;
     line-height: 22px;
     padding-left: 22px;

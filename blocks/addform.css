@@ -1,4 +1,4 @@
-.edit__form {
+.addform {
   padding-top: 54px;
   padding-bottom: 36.51px;
   margin: 0 auto;
@@ -8,7 +8,7 @@
   width: 358px;
 }
 
-.edit__form-fieldset {
+.addform__fieldset {
   padding: 0;
   margin: 0;
   display: flex;
@@ -17,7 +17,7 @@
   gap: 30px;
 }
 
-.edit__form-input {
+.addform__input {
   margin: 0;
   font-family: "Inter", sans-serif;
   font-size: 14px;
@@ -33,7 +33,7 @@
   width: 358px;
 }
 
-.edit__form-fieldset_button {
+.addform__fieldset-button {
   border: none;
   margin: 0;
   padding-left: 0;
@@ -43,7 +43,7 @@
   max-width: 358px;
 }
 
-.edit__form-button {
+.addform__button {
   background: #000000;
   border-radius: 2px;
   color: #ffffff;
@@ -64,28 +64,28 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.edit__form-button:hover {
+.addform__button:hover {
   opacity: 0.8;
 }
 
 @media screen and (max-width: 600px) {
-  .edit__form {
+  .addform {
     padding-top: 76px;
     padding-bottom: 25px;
     max-width: 238px;
     width: 238px;
   }
 
-  .edit__form-input {
+  .addform__input {
     width: 100%;
   }
 
-  .edit__form-fieldset_button {
+  .addform__fieldset_button {
     padding-top: 46px;
     max-width: 100%;
   }
 
-  .edit__form-button {
+  .addform__button {
     font-size: 14px;
     line-height: 17px;
     width: 100%;

@@ -28,22 +28,18 @@ const initialCards = [
 ];
 
 ///// models////
-const editPopup = document.querySelector(".edit__popup");
-const editForm = document.querySelector(".edit__form");
-const addPopup = document.querySelector(".add__popup");
-const addForm = addPopup.querySelector(".add__form");
-const imagePopup = document.querySelector(".image__popup");
+const editPopup = document.querySelector(".edit");
+const editForm = document.querySelector(".editform");
+const addPopup = document.querySelector(".add");
+const addForm = addPopup.querySelector(".addform");
+const imagePopup = document.querySelector(".image");
 
 /////buttons///
 const profileEditbutton = document.querySelector(".profile__edit-button");
-const editPopupClosebutton = editPopup.querySelector(
-  ".edit__popup-close_button"
-);
+const editPopupClosebutton = editPopup.querySelector(".edit__close-button");
 const profileAddButton = document.querySelector(".profile__add-button");
-const addPopupButton = addPopup.querySelector(".add__popup-close_button");
-const imagePopupCloseButton = imagePopup.querySelector(
-  ".image__popup-close_button"
-);
+const addPopupButton = addPopup.querySelector(".add__close-button");
+const imagePopupCloseButton = imagePopup.querySelector(".image__close-button");
 
 //wrappers///
 
@@ -116,7 +112,6 @@ function handleProfileAddFormSubmit(evt) {
 
   cardContainer.prepend(cardElement);
 
-  addPopup.classList.remove("add__popup_active");
   addPopup.classList.add("add__popup_fadeout");
   addPopup.classList.remove("add__popup_fadein");
 
@@ -133,9 +128,9 @@ function handleProfileAddFormSubmit(evt) {
     });
 
   cardImage.addEventListener("click", function () {
-    const imagePopupImage = imagePopup.querySelector(".image__popup-image");
+    const imagePopupImage = imagePopup.querySelector(".image__popup");
     const imagePopupDidcription = imagePopup.querySelector(
-      ".image__popup-discription"
+      ".image__discription"
     );
     imagePopupImage.src = imageInput.value;
     imagePopupDidcription.textContent = titelInput.value;
@@ -175,10 +170,8 @@ function creatCardElement(card) {
 }
 
 const imagePreview = (card) => {
-  const imagePopupImage = imagePopup.querySelector(".image__popup-image");
-  const imagePopupDidcription = imagePopup.querySelector(
-    ".image__popup-discription"
-  );
+  const imagePopupImage = imagePopup.querySelector(".image__popup");
+  const imagePopupDidcription = imagePopup.querySelector(".image__discription");
   imagePopupImage.src = card.link;
   imagePopupDidcription.textContent = card.name;
 

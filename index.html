@@ -28,15 +28,15 @@
           </div>
           <button type="button" class="profile__add-button"></button>
         </section>
-        <section class="edit__popup" id="edit-popup">
-          <div class="edit__popup-container">
-            <button type="button" class="edit__popup-close_button"></button>
-            <div class="edit__popup-form_container">
-              <h2 class="edit__popup-header">Edit profile</h2>
-              <form class="edit__popup-form edit__form" name="edit-form">
-                <fieldset class="edit__form-fieldset">
+        <section class="edit" id="edit-popup">
+          <div class="edit__container">
+            <button type="button" class="edit__close-button"></button>
+            <div class="edit__form-container">
+              <h2 class="edit__header">Edit profile</h2>
+              <form class="edit__form editform" name="edit-form">
+                <fieldset class="editform__fieldset">
                   <input
-                    class="edit__form-input"
+                    class="editform__input"
                     type="text"
                     id="name"
                     placeholder="Jacques Cousteau"
@@ -44,7 +44,7 @@
                     required
                   />
                   <input
-                    class="edit__form-input"
+                    class="editform__input"
                     type="text"
                     id="job"
                     placeholder="Explorer"
@@ -52,22 +52,22 @@
                     required
                   />
                 </fieldset>
-                <fieldset class="edit__form-fieldset_button">
-                  <button type="submit" class="edit__form-button">Save</button>
+                <fieldset class="editform__fieldset-button">
+                  <button type="submit" class="editform__button">Save</button>
                 </fieldset>
               </form>
             </div>
           </div>
         </section>
-        <section class="add__popup" id="add-popup">
-          <div class="add__popup-container">
-            <button type="button" class="add__popup-close_button"></button>
-            <div class="add__popup-form_container">
-              <h2 class="add__popup-header">New place</h2>
-              <form class="add__popup-form add__form" name="add-form">
-                <fieldset class="add__form-fieldset">
+        <section class="add" id="add-popup">
+          <div class="add__container">
+            <button type="button" class="add__close-button"></button>
+            <div class="add__form-container">
+              <h2 class="add__header">New place</h2>
+              <form class="add__form addform" name="add-form">
+                <fieldset class="addform__fieldset">
                   <input
-                    class="add__form-input"
+                    class="addform__input"
                     type="text"
                     id="title"
                     placeholder="Title"
@@ -75,7 +75,7 @@
                     required
                   />
                   <input
-                    class="add__form-input"
+                    class="addform__input"
                     type="text"
                     id="image-link"
                     placeholder="Image link"
@@ -83,8 +83,8 @@
                     required
                   />
                 </fieldset>
-                <fieldset class="add__form-fieldset_button">
-                  <button type="submit" class="add__form-button">Create</button>
+                <fieldset class="addform__fieldset-button">
+                  <button type="submit" class="addform__button">Create</button>
                 </fieldset>
               </form>
             </div>
@@ -93,11 +93,11 @@
         <section class="gallery">
           <ul class="gallery__container"></ul>
         </section>
-        <section class="image__popup" id="image-popup">
-          <div class="image__popup-container">
-            <button type="button" class="image__popup-close_button"></button>
-            <img class="image__popup-image" src="&nbsp;" alt="" />
-            <p class="image__popup-discription"></p>
+        <section class="image" id="image-popup">
+          <div class="image__container">
+            <button type="button" class="image__close-button"></button>
+            <img class="image__popup" src="&nbsp;" alt="" />
+            <p class="image__discription"></p>
           </div>
         </section>
       </main>

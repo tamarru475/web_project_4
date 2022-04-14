@@ -1,4 +1,4 @@
-.image__popup {
+.image {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -28,14 +28,14 @@
   transition: visibility 0.8s linear, opacity 0.8s linear;
 }
 
-.image__popup-container {
+.image__container {
   max-width: 75vw;
   max-height: 75vh;
   width: auto;
   padding: 0;
 }
 
-.image__popup-close_button {
+.image__close-button {
   max-width: 100%;
   margin-left: 100%;
   margin-bottom: 3px;
@@ -52,12 +52,12 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.image__popup-close_button:hover {
+.image__close-button:hover {
   opacity: 0.6;
   transform: rotate(45deg);
 }
 
-.image__popup-image {
+.image__popup {
   height: 100%;
   box-sizing: border-box;
   max-width: 100%;
@@ -65,7 +65,7 @@
   width: 100%;
 }
 
-.image__popup-discription {
+.image__discription {
   padding: 0;
   font-family: "Inter", sans-serif;
   font-size: 12px;
