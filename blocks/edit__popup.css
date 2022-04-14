@@ -4,7 +4,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 100%;
-  display: none;
+  display: flex;
   visibility: hidden;
   opacity: 0;
   justify-content: center;
@@ -13,10 +13,6 @@
   width: 100vw;
   height: 100vh;
   z-index: 5;
-}
-
-.edit__popup_active {
-  display: flex;
 }
 
 .edit__popup_fadein {

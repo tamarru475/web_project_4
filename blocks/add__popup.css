@@ -5,18 +5,14 @@
   transform: translate(-50%, -50%);
   max-width: 100%;
   visibility: hidden;
+  display: flex;
   opacity: 0;
-  display: none;
   justify-content: center;
   align-items: center;
   background-color: rgb(0, 0, 0, 0.5);
   width: 100vw;
   height: 100vh;
   z-index: 5;
-}
-
-.add__popup_active {
-  display: flex;
 }
 
 .add__popup_fadein {
@@ -26,9 +22,15 @@
 }
 
 .add__popup_fadeout {
+  margin: 0 auto;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.8s linear, opacity 0.8s linear;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+  align-items: center;
 }
 
 .add__popup-container {

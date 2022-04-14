@@ -58,7 +58,6 @@ const cardContainer = document.querySelector(".gallery__container");
 ////functions////
 
 function openEditPopup() {
-  editPopup.classList.add("edit__popup_active");
   editPopup.classList.add("edit__popup_fadein");
   editPopup.classList.remove("edit__popup_fadeout");
 
@@ -74,7 +73,6 @@ function openEditPopup() {
 }
 
 function closeEditPopup() {
-  editPopup.classList.remove("edit__popup_active");
   editPopup.classList.add("edit__popup_fadeout");
   editPopup.classList.remove("edit__popup_fadein");
 }
@@ -92,22 +90,21 @@ function handleProfileEditFormSubmit(evt) {
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
 
-  editPopup.classList.remove("edit__popup_active");
+  editPopup.classList.add("edit__popup_fadeout");
+  editPopup.classList.remove("edit__popup_fadein");
 }
 
 function openAddPopup() {
-  addPopup.classList.add("add__popup_active");
   addPopup.classList.add("add__popup_fadein");
   addPopup.classList.remove("add__popup_fadeout");
 }
 
 function closeAddPopup() {
-  addPopup.classList.remove("add__popup_active");
   addPopup.classList.add("add__popup_fadeout");
   addPopup.classList.remove("add__popup_fadein");
 }
 
-function handleProfileAddFormSubmit(evt, card) {
+function handleProfileAddFormSubmit(evt) {
   evt.preventDefault();
 
   const cardTemplate = document
@@ -149,7 +146,6 @@ function handleProfileAddFormSubmit(evt, card) {
     imagePopupImage.src = imageInput.value;
     imagePopupDidcription.textContent = titelInput.value;
 
-    imagePopup.classList.add("image__popup_active");
     imagePopup.classList.add("image__popup_fadein");
     imagePopup.classList.remove("image__popup_fadeout");
   });
@@ -192,7 +188,6 @@ const imagePreview = (card) => {
   imagePopupImage.src = card.link;
   imagePopupDidcription.textContent = card.name;
 
-  imagePopup.classList.add("image__popup_active");
   imagePopup.classList.add("image__popup_fadein");
   imagePopup.classList.remove("image__popup_fadeout");
 };
@@ -216,7 +211,6 @@ editForm.addEventListener("submit", handleProfileEditFormSubmit);
 addForm.addEventListener("submit", handleProfileAddFormSubmit);
 
 imagePopupCloseButton.addEventListener("click", function () {
-  imagePopup.classList.remove("image__popup_active");
   imagePopup.classList.add("image__popup_fadeout");
   imagePopup.classList.remove("image__popup_fadein");
 });
