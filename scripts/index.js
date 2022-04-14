@@ -33,10 +33,6 @@ const editForm = document.querySelector(".edit__form");
 const addPopup = document.querySelector(".add__popup");
 const addForm = addPopup.querySelector(".add__form");
 const imagePopup = document.querySelector(".image__popup");
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".gallery__card");
-const cardElement = cardTemplate.cloneNode(true);
 
 /////buttons///
 const profileEditbutton = document.querySelector(".profile__edit-button");
