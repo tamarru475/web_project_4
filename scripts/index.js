@@ -37,7 +37,6 @@ const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".gallery__card");
 const cardElement = cardTemplate.cloneNode(true);
-const gallery = document.querySelector(".gallery");
 
 /////buttons///
 const profileEditbutton = document.querySelector(".profile__edit-button");
@@ -46,7 +45,6 @@ const editPopupClosebutton = editPopup.querySelector(
 );
 const profileAddButton = document.querySelector(".profile__add-button");
 const addPopupButton = addPopup.querySelector(".add__popup-close_button");
-const likeButton = cardElement.querySelector(".gallery__card-like_button");
 const imagePopupCloseButton = imagePopup.querySelector(
   ".image__popup-close_button"
 );
