@@ -40,7 +40,7 @@ const profilePopupCloseButton = editProfilePopup.querySelector(
   ".edit__close-button"
 );
 const profileAddButton = document.querySelector(".profile__add-button");
-const CardPopupCloseButton = addCardPopup.querySelector(".add__close-button");
+const cardPopupCloseButton = addCardPopup.querySelector(".add__close-button");
 const imagePopupCloseButton = imagePopup.querySelector(".image__close-button");
 
 //wrappers///
@@ -151,7 +151,7 @@ profilePopupCloseButton.addEventListener("click", () =>
   togglePopup(editProfilePopup)
 );
 
-CardPopupCloseButton.addEventListener("click", () => togglePopup(addCardPopup));
+cardPopupCloseButton.addEventListener("click", () => togglePopup(addCardPopup));
 
 editForm.addEventListener("submit", handleProfileEditFormSubmit);
 
