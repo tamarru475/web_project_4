@@ -92,19 +92,31 @@
   opacity: 0.6;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 880px) {
+  .profile {
+    max-width: 90vw;
+    margin: 0 auto;
+    padding-top: 40px;
+  }
+
+  .profile__image {
+    max-width: 100px;
+  }
+
   .profile__info {
     max-width: 380px;
+    padding-left: 15px;
   }
 
   .profile__name {
-    font-size: 33px;
-    line-height: 35px;
+    font-size: 30px;
+    line-height: 32px;
     width: 300px;
   }
 
   .profile__edit-button {
     margin-left: 0px;
+    padding: 0;
   }
 
   .profile__add-button {
