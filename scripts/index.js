@@ -29,9 +29,9 @@ const initialCards = [
 
 ///// popups////
 const editProfilePopup = document.querySelector(".edit");
-const editForm = document.querySelector(".editform");
+const editForm = document.querySelector(".edit__form");
 const addCardPopup = document.querySelector(".add");
-const addForm = addCardPopup.querySelector(".addform");
+const addForm = addCardPopup.querySelector(".add__form");
 const imagePopup = document.querySelector(".image");
 
 /////buttons///
