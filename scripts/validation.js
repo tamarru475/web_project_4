@@ -65,7 +65,11 @@ const enableValidation = () => {
     formElement.addEventListener("submit", function (evt) {
       evt.preventDefault();
     });
+
+    setEventListeners(formElement);
   });
 };
 
 /// Calls ///
+
+enableValidation();

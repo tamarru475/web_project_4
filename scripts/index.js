@@ -49,8 +49,8 @@ const cardContainer = document.querySelector(".gallery__container");
 
 //inputs//
 
-const nameInput = document.getElementById("name");
-const jobInput = document.getElementById("job");
+const nameInput = document.getElementById("name-input");
+const jobInput = document.getElementById("job-input");
 
 ////functions////
 
@@ -85,8 +85,8 @@ function handleProfileEditFormSubmit(evt) {
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
 
-  const titelInput = document.getElementById("title");
-  const imageInput = document.getElementById("image-link");
+  const titelInput = document.getElementById("title-input");
+  const imageInput = document.getElementById("imagelink-input");
 
   cardContainer.prepend(
     createCardElement({ name: titelInput.value, link: imageInput.value })

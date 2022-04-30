@@ -33,28 +33,30 @@
             <button type="button" class="edit__close-button"></button>
             <div class="edit__form-container">
               <h2 class="edit__header">Edit profile</h2>
-              <form class="edit__form form" name="edit">
+              <form class="edit__form form" name="edit" novalidate>
                 <fieldset class="form__fieldset">
                   <input
                     class="form__input form__input-name"
                     type="text"
-                    id="name"
+                    id="name-input"
                     placeholder="Jacques Cousteau"
                     name="name"
                     minlength="2"
                     maxlength="40"
                     required
                   />
+                  <span class="form__input-error name-input-error"></span>
                   <input
                     class="form__input form__input-job"
                     type="text"
-                    id="job"
+                    id="job-input"
                     placeholder="Explorer"
                     name="about"
                     minlength="2"
                     maxlength="200"
                     required
                   />
+                  <span class="form__input-error job-input-error"></span>
                 </fieldset>
                 <fieldset class="form__fieldset-button">
                   <button type="submit" class="form__button">Save</button>
@@ -68,24 +70,28 @@
             <button type="button" class="add__close-button"></button>
             <div class="add__form-container">
               <h2 class="add__header">New place</h2>
-              <form class="add__form form" name="add-form">
+              <form class="add__form form" name="add" novalidate>
                 <fieldset class="form__fieldset">
                   <input
                     class="form__input"
                     type="text"
-                    id="title"
+                    id="title-input"
                     placeholder="Title"
                     name="title"
                     required
+                    minlength="1"
+                    maxlength="30"
                   />
+                  <span class="form__input-error title-input-error"></span>
                   <input
                     class="form__input"
                     type="url"
-                    id="image-link"
+                    id="imagelink-input"
                     placeholder="Image link"
                     name="image"
                     required
                   />
+                  <span class="form__input-error imagelink-input-error"></span>
                 </fieldset>
                 <fieldset class="form__fieldset-button">
                   <button type="submit" class="form__button">Create</button>
