@@ -28,8 +28,8 @@
           </div>
           <button type="button" class="profile__add-button"></button>
         </section>
-        <section class="edit" id="edit-popup">
-          <div class="edit__container">
+        <section class="edit" id="edit">
+          <div class="edit__container popup__container">
             <button type="button" class="edit__close-button"></button>
             <div class="edit__form-container">
               <h2 class="edit__header">Edit profile</h2>
@@ -59,14 +59,16 @@
                   <span class="form__input-error job-input-error"></span>
                 </fieldset>
                 <fieldset class="form__fieldset-button">
-                  <button type="submit" class="form__button">Save</button>
+                  <button type="submit" class="form__button" disabled>
+                    Save
+                  </button>
                 </fieldset>
               </form>
             </div>
           </div>
         </section>
         <section class="add" id="add-popup">
-          <div class="add__container">
+          <div class="add__container popup__container">
             <button type="button" class="add__close-button"></button>
             <div class="add__form-container">
               <h2 class="add__header">New place</h2>
@@ -94,7 +96,9 @@
                   <span class="form__input-error imagelink-input-error"></span>
                 </fieldset>
                 <fieldset class="form__fieldset-button">
-                  <button type="submit" class="form__button">Create</button>
+                  <button type="submit" class="form__button" disabled>
+                    Create
+                  </button>
                 </fieldset>
               </form>
             </div>
@@ -104,7 +108,7 @@
           <ul class="gallery__container"></ul>
         </section>
         <section class="image" id="image-popup">
-          <div class="image__container">
+          <div class="image__container popup__container">
             <button type="button" class="image__close-button"></button>
             <img class="image__popup" src="#" alt="" />
             <p class="image__discription"></p>

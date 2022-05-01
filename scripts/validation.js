@@ -1,5 +1,3 @@
-///const///
-
 /// Input Error Functions ///
 
 const showInputError = (formElement, inputElement, errorMessage) => {
@@ -21,7 +19,6 @@ const hideInputError = (formElement, inputElement) => {
 /// Input Validator ///
 const checkInputValidity = (formElement, inputElement) => {
   if (!inputElement.validity.valid) {
-    console.log(inputElement);
     showInputError(formElement, inputElement, inputElement.validationMessage);
   } else {
     hideInputError(formElement, inputElement);
@@ -41,6 +38,7 @@ const toggleButtonState = (inputList, buttonElement) => {
     buttonElement.classList.add("form__button_disabled");
   } else {
     buttonElement.classList.remove("form__button_disabled");
+    buttonElement.disabled = false;
   }
 };
 

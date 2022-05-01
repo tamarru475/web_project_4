@@ -114,6 +114,10 @@
     width: 300px;
   }
 
+  .profile__name-discription {
+    width: 250px;
+  }
+
   .profile__edit-button {
     margin-left: 0px;
     padding: 0;

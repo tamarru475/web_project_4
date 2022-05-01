@@ -42,6 +42,7 @@ const profilePopupCloseButton = editProfilePopup.querySelector(
 const profileAddButton = document.querySelector(".profile__add-button");
 const cardPopupCloseButton = addCardPopup.querySelector(".add__close-button");
 const imagePopupCloseButton = imagePopup.querySelector(".image__close-button");
+const formButton = document.querySelector(".form__button");
 
 //wrappers///
 
@@ -137,7 +138,23 @@ function renderCard(card, wrraper) {
   wrraper.append(createCardElement(card));
 }
 
+function closePopup(popupModel) {
+  popupModel.classList.add("popup_fadeout");
+}
+
+const closePopupWhenLayover = (popupModel) => {
+  popupModel.addEventListener("mousedown", function (evt) {
+    const isClosest = evt.target.closest(".popup__container");
+
+    if (!isClosest && popupModel.classList.contains("popup_fadein")) {
+      closePopup(popupModel);
+    }
+  });
+};
+
 /////event listeners/////
+
+/// Edit Profile Popup ///
 
 profileEditButton.addEventListener("click", () =>
   togglePopup(editProfilePopup)
@@ -145,19 +162,39 @@ profileEditButton.addEventListener("click", () =>
 
 profileEditButton.addEventListener("click", fillProfileForm);
 
-profileAddButton.addEventListener("click", () => togglePopup(addCardPopup));
-
 profilePopupCloseButton.addEventListener("click", () =>
   togglePopup(editProfilePopup)
 );
 
-cardPopupCloseButton.addEventListener("click", () => togglePopup(addCardPopup));
-
 editForm.addEventListener("submit", handleProfileEditFormSubmit);
+
+closePopupWhenLayover(editProfilePopup);
+
+/// Add Card Popup ///
+
+profileAddButton.addEventListener("click", () => togglePopup(addCardPopup));
+
+cardPopupCloseButton.addEventListener("click", () => togglePopup(addCardPopup));
 
 addForm.addEventListener("submit", handleCardFormSubmit);
 
+closePopupWhenLayover(addCardPopup);
+
+/// Image Popup ///
+
 imagePopupCloseButton.addEventListener("click", () => togglePopup(imagePopup));
+
+closePopupWhenLayover(imagePopup);
+
+/// General ///
+
+document.addEventListener("keydown", function (evt) {
+  if (evt.key === "Escape") {
+    closePopup(editProfilePopup);
+    closePopup(addCardPopup);
+    closePopup(imagePopup);
+  }
+});
 
 ///const removeCard = (card) => {};
 
