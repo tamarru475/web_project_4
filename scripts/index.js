@@ -153,7 +153,7 @@ function closePopup(popupModel) {
 
 const closePopupWhenLayover = (popupModel) => {
   popupModel.addEventListener("mousedown", function (evt) {
-    const isClosest = evt.target.closest(".popup__container");
+    const isClosest = evt.target.closest(".container");
 
     if (!isClosest && popupModel.classList.contains("popup_fadein")) {
       closePopup(popupModel);
