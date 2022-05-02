@@ -99,11 +99,6 @@
   opacity: 0.8;
 }
 
-.form__button_disabled {
-  background: #e5e5e5;
-  opacity: 0.2;
-}
-
 @media screen and (max-width: 600px) {
   .form {
     padding-top: 76px;
