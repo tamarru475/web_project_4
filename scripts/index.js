@@ -1,3 +1,5 @@
+//// Imports ////
+import resetValidationError from "./validation.js";
 //// decleratoins /////
 
 const initialCards = [
@@ -42,7 +44,6 @@ const profilePopupCloseButton = editProfilePopup.querySelector(
 const profileAddButton = document.querySelector(".profile__add-button");
 const cardPopupCloseButton = addCardPopup.querySelector(".add__close-button");
 const imagePopupCloseButton = imagePopup.querySelector(".image__close-button");
-const formButton = document.querySelector(".form__button");
 
 //wrappers///
 
@@ -58,6 +59,8 @@ const jobInput = document.getElementById("job-input");
 function togglePopup(modelPopup) {
   if (modelPopup.classList.contains("popup_fadein")) {
     modelPopup.classList.toggle("popup_fadeout");
+    disableButton();
+    resetValidationError(modelPopup);
   } else {
     modelPopup.classList.toggle("popup_fadein");
   }
@@ -69,6 +72,8 @@ function fillProfileForm() {
 
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
+
+  enableButton();
 }
 
 function handleProfileEditFormSubmit(evt) {
@@ -88,13 +93,15 @@ function handleCardFormSubmit(evt) {
 
   const titelInput = document.getElementById("title-input");
   const imageInput = document.getElementById("imagelink-input");
-
-  cardContainer.prepend(
-    createCardElement({ name: titelInput.value, link: imageInput.value })
-  );
-
-  togglePopup(addCardPopup);
-  addForm.reset();
+  if (titelInput.value == "" || imageInput.value == "") {
+    disableButton();
+  } else {
+    cardContainer.prepend(
+      createCardElement({ name: titelInput.value, link: imageInput.value })
+    );
+    togglePopup(addCardPopup);
+    addForm.reset();
+  }
 }
 
 function createCardElement(card) {
@@ -140,6 +147,8 @@ function renderCard(card, wrraper) {
 
 function closePopup(popupModel) {
   popupModel.classList.add("popup_fadeout");
+  disableButton();
+  addForm.reset();
 }
 
 const closePopupWhenLayover = (popupModel) => {
@@ -151,6 +160,16 @@ const closePopupWhenLayover = (popupModel) => {
     }
   });
 };
+
+function disableButton() {
+  const formButton = document.querySelector(".form__button");
+  formButton.disabled = true;
+}
+
+function enableButton() {
+  const formButton = document.querySelector(".form__button");
+  formButton.disabled = false;
+}
 
 /////event listeners/////
 

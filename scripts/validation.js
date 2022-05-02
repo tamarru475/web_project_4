@@ -1,12 +1,12 @@
 /// Input Error Functions ///
 
-const showInputError = (formElement, inputElement, errorMessage) => {
+function showInputError(formElement, inputElement, errorMessage) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
   inputElement.classList.add("form__input_type_error");
   errorElement.textContent = errorMessage;
   errorElement.classList.add("form__input-error_active");
-};
+}
 
 const hideInputError = (formElement, inputElement) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -16,6 +16,25 @@ const hideInputError = (formElement, inputElement) => {
   errorElement.textContent = "";
 };
 
+export default function resetValidationError(formElement) {
+  const errorElements = Array.from(
+    formElement.querySelectorAll(`.form__input-error`)
+  );
+  const inputList = Array.from(formElement.querySelectorAll(".form__input"));
+
+  const buttonElement = formElement.querySelector(".form__button");
+
+  errorElements.forEach((errorElement) => {
+    errorElement.classList.remove("form__input-error_active");
+    errorElement.textContent = "";
+  });
+
+  inputList.forEach((inputElement) => {
+    inputElement.classList.remove("form__input_type_error");
+  });
+
+  buttonElement.classList.remove("form__button_disabled");
+}
 /// Input Validator ///
 const checkInputValidity = (formElement, inputElement) => {
   if (!inputElement.validity.valid) {
@@ -33,9 +52,9 @@ const hasInvalidInput = (inputList) => {
 
 /// Buttons State Handler ///
 const toggleButtonState = (inputList, buttonElement) => {
-  console.log(hasInvalidInput(inputList));
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add("form__button_disabled");
+    buttonElement.disabled = true;
   } else {
     buttonElement.classList.remove("form__button_disabled");
     buttonElement.disabled = false;
@@ -71,3 +90,5 @@ const enableValidation = () => {
 /// Calls ///
 
 enableValidation();
+
+/// exports ///
