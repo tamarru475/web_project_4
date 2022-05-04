@@ -167,13 +167,11 @@ const closePopupWhenLayover = (popupModel) => {
   });
 };
 
-function closePopupWhenEsc(popupModel) {
+function closePopupWhenEsc() {
   document.addEventListener("keydown", function (evt) {
     if (evt.key === "Escape") {
-      closePopup(popupModel);
-    } else if (popupModel.classList.contains(".form")) {
-      const formElement = popupModel.querySelector(".form");
-      resetValidationError(formElement);
+      const openedPopup = document.querySelector(".popup_fadein");
+      closePopup(openedPopup);
     }
   });
 }
@@ -197,10 +195,7 @@ const resetErrorUponClose = (popupModel, closeButtonElement) => {
 
 profileEditButton.addEventListener("click", () => openPopup(editProfilePopup));
 
-profileEditButton.addEventListener(
-  "click",
-  closePopupWhenEsc(editProfilePopup)
-);
+profileEditButton.addEventListener("click", closePopupWhenEsc);
 
 profilePopupCloseButton.addEventListener("click", removeClosePopupEsc);
 
@@ -220,7 +215,7 @@ resetErrorUponClose(editProfilePopup, profilePopupCloseButton);
 
 profileAddButton.addEventListener("click", () => openPopup(addCardPopup));
 
-profileAddButton.addEventListener("click", closePopupWhenEsc(addCardPopup));
+profileAddButton.addEventListener("click", closePopupWhenEsc);
 
 cardPopupCloseButton.addEventListener("click", () => closePopup(addCardPopup));
 
@@ -237,10 +232,7 @@ resetErrorUponClose(addCardPopup, cardPopupCloseButton);
 
 imagePopupCloseButton.addEventListener("click", () => closePopup(imagePopup));
 
-imagePopupCloseButton.addEventListener(
-  "click",
-  removeClosePopupEsc(imagePopup)
-);
+imagePopupCloseButton.addEventListener("click", removeClosePopupEsc);
 
 closePopupWhenLayover(imagePopup);
 
