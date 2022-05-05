@@ -92,6 +92,10 @@
   cursor: default;
 }
 
+.form__button_disabled:hover {
+  opacity: 0.2;
+}
+
 @media screen and (max-width: 600px) {
   .form {
     padding-top: 76px;

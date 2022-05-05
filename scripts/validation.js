@@ -26,9 +26,6 @@ const hideInputError = (formElement, inputElement) => {
 };
 
 export function resetValidationError(formElement) {
-  const errorElements = Array.from(
-    formElement.querySelectorAll(configurations.inputErrorClass)
-  );
   const inputList = Array.from(
     formElement.querySelectorAll(configurations.inputSelector)
   );
@@ -36,11 +33,6 @@ export function resetValidationError(formElement) {
   const buttonElement = formElement.querySelector(
     configurations.submitButtonSelector
   );
-
-  errorElements.forEach((errorElement) => {
-    errorElement.classList.remove(configurations.errorClass);
-    errorElement.textContent = "";
-  });
 
   inputList.forEach((inputElement) => {
     hideInputError(formElement, inputElement);
