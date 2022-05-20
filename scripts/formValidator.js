@@ -25,7 +25,7 @@ const hideInputError = (formElement, inputElement) => {
   errorElement.textContent = "";
 };
 
-export function resetValidationError(formElement) {
+function resetValidationError(formElement) {
   const inputList = Array.from(
     formElement.querySelectorAll(configurations.inputSelector)
   );
@@ -57,7 +57,7 @@ const hasInvalidInput = (inputList) => {
 };
 
 /// Buttons State Handler ///
-export const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(configurations.inactiveButtonClass);
     buttonElement.disabled = true;
@@ -103,4 +103,4 @@ const enableValidation = () => {
 
 enableValidation();
 
-/// exports ///
+export { resetValidationError, toggleButtonState };
