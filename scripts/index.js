@@ -1,44 +1,19 @@
 //// Imports ////
 import {
-  openPopup,
+  openImagePreview,
   closePopup,
-  imagePopup,
   editProfilePopup,
   addCardPopup,
   profileEditButton,
   cardPopupCloseButton,
 } from "./utils.js";
 
+import { cardContainer, cardGenerator } from "./card.js";
+
 import { resetValidationError, toggleButtonState } from "./formValidator.js";
 
 //// decleratoins /////
 (function () {
-  const initialCards = [
-    {
-      name: "Yosemite Valley",
-      link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-    },
-    {
-      name: "Lake Louise",
-      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-    },
-    {
-      name: "Bald Mountains",
-      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-    },
-    {
-      name: "Latemar",
-      link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-    },
-    {
-      name: "Vanoise National Park",
-      link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-    },
-    {
-      name: "Lago di Braies",
-      link: "https://code.s3.yandex.net/web-code/lago.jpg",
-    },
-  ];
   ///// Forms ////
   const editForm = document.querySelector(".edit__form");
   const addForm = addCardPopup.querySelector(".add__form");
@@ -47,8 +22,6 @@ import { resetValidationError, toggleButtonState } from "./formValidator.js";
   const formButton = document.querySelector(".form__button");
 
   //wrappers///
-
-  const cardContainer = document.querySelector(".gallery__container");
 
   //Inputs//
 
@@ -60,18 +33,6 @@ import { resetValidationError, toggleButtonState } from "./formValidator.js";
   const profileJob = document.querySelector(".profile__name-discription");
 
   //// Popup functions////
-
-  const openImagePreview = (card) => {
-    const imagePopupImage = imagePopup.querySelector(".image__popup");
-    const imagePopupDecription = imagePopup.querySelector(
-      ".image__discription"
-    );
-    imagePopupImage.src = card.link;
-    imagePopupImage.alt = card.name;
-    imagePopupDecription.textContent = card.name;
-
-    openPopup(imagePopup);
-  };
 
   /// Form Functions ///
 
@@ -103,15 +64,12 @@ import { resetValidationError, toggleButtonState } from "./formValidator.js";
     const imageInput = document.getElementById("imagelink-input");
 
     cardContainer.prepend(
-      createCardElement({ name: titelInput.value, link: imageInput.value })
+      createCardElement({ text: titelInput.value, image: imageInput.value })
     );
-
     closePopup(addCardPopup);
     addForm.reset();
     resetValidationError(addForm);
   }
-
-  /// Card Function ///
 
   function createCardElement(card) {
     const cardTemplate = document
@@ -121,8 +79,8 @@ import { resetValidationError, toggleButtonState } from "./formValidator.js";
     const cardImage = cardElement.querySelector(".gallery__card-image");
     const cardTitle = cardElement.querySelector(".gallery__card-place");
 
-    cardImage.style.backgroundImage = `url(${card.link})`;
-    cardTitle.textContent = card.name;
+    cardImage.style.backgroundImage = `url(${card.image})`;
+    cardTitle.textContent = card.text;
 
     cardImage.addEventListener("click", () => openImagePreview(card));
 
@@ -142,11 +100,7 @@ import { resetValidationError, toggleButtonState } from "./formValidator.js";
     return cardElement;
   }
 
-  function renderCard(card, wrraper) {
-    wrraper.append(createCardElement(card));
-  }
-
-  initialCards.forEach((card) => renderCard(card, cardContainer));
+  /// Card Function ///
 
   /////event listeners/////
 

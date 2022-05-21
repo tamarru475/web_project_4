@@ -22,6 +22,16 @@ function openPopup(popupModel) {
   }
 }
 
+const openImagePreview = (card) => {
+  const imagePopupImage = imagePopup.querySelector(".image__popup");
+  const imagePopupDecription = imagePopup.querySelector(".image__discription");
+  imagePopupImage.src = card.image;
+  imagePopupImage.alt = card.text;
+  imagePopupDecription.textContent = card.text;
+
+  openPopup(imagePopup);
+};
+
 function closePopup(popupModel) {
   popupModel.classList.add("popup_fadeout");
   document.removeEventListener("keydown", closePopupWhenEsc);
@@ -67,10 +77,12 @@ imagePopupCloseButton.addEventListener("click", () => closePopup(imagePopup));
 /// Export ///
 export {
   openPopup,
+  openImagePreview,
   closePopup,
   imagePopup,
   editProfilePopup,
   addCardPopup,
   profileEditButton,
   cardPopupCloseButton,
+  imagePopupCloseButton,
 };
