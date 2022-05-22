@@ -119,5 +119,3 @@ initialCards.forEach((item) => {
 
   cardContainer.append(cardElement);
 });
-
-export const cardGenerator = Card.prototype.generateCard;

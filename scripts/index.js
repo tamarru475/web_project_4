@@ -8,7 +8,7 @@ import {
   cardPopupCloseButton,
 } from "./utils.js";
 
-import { cardContainer, cardGenerator } from "./card.js";
+import { cardContainer } from "./card.js";
 
 import { resetValidationError, toggleButtonState } from "./formValidator.js";
 
