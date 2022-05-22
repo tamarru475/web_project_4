@@ -10,7 +10,7 @@ import {
 
 import { cardContainer } from "./card.js";
 
-import { resetValidationError, toggleButtonState } from "./formValidator.js";
+import FormValidator from "./formValidator.js";
 
 //// decleratoins /////
 (function () {
@@ -37,12 +37,8 @@ import { resetValidationError, toggleButtonState } from "./formValidator.js";
   /// Form Functions ///
 
   function fillProfileForm() {
-    const inputList = Array.from(editForm.querySelectorAll(".form__input"));
-
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
-
-    toggleButtonState(inputList, formButton);
   }
 
   function handleProfileEditFormSubmit(evt) {
@@ -68,7 +64,7 @@ import { resetValidationError, toggleButtonState } from "./formValidator.js";
     );
     closePopup(addCardPopup);
     addForm.reset();
-    resetValidationError(addForm);
+    addFormValidator.resetValidationError();
   }
 
   function createCardElement(card) {
@@ -100,10 +96,6 @@ import { resetValidationError, toggleButtonState } from "./formValidator.js";
     return cardElement;
   }
 
-  /// Card Function ///
-
-  /////event listeners/////
-
   /// Edit Profile From ///
 
   profileEditButton.addEventListener("click", fillProfileForm);
@@ -112,13 +104,22 @@ import { resetValidationError, toggleButtonState } from "./formValidator.js";
 
   /// Add Card Popup ///
 
-  cardPopupCloseButton.addEventListener("click", resetValidationError(addForm));
-
   addForm.addEventListener("submit", handleCardFormSubmit);
 
-  /// General ///
+  /// Validation ///
 
-  ///const removeCard = (card) => {};
+  const defaultConfig = {
+    formSelector: ".form",
+    inputSelector: ".form__input",
+    submitButtonSelector: ".form__button",
+    inactiveButtonClass: "form__button_disabled",
+    inputErrorClass: "form__input_type_error",
+    errorClass: "form__input-error_active",
+  };
 
-  /// Classes ////
+  const editFormValidator = new FormValidator(defaultConfig, editForm);
+  const addFormValidator = new FormValidator(defaultConfig, addForm);
+
+  editFormValidator.enableValidation();
+  addFormValidator.enableValidation();
 })();
