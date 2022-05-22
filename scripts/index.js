@@ -1,14 +1,12 @@
 //// Imports ////
 import {
-  openImagePreview,
   closePopup,
   editProfilePopup,
   addCardPopup,
   profileEditButton,
-  cardPopupCloseButton,
 } from "./utils.js";
 
-import { cardContainer } from "./card.js";
+import { cardContainer, Card } from "./card.js";
 
 import FormValidator from "./formValidator.js";
 
@@ -59,42 +57,18 @@ import FormValidator from "./formValidator.js";
     const titelInput = document.getElementById("title-input");
     const imageInput = document.getElementById("imagelink-input");
 
-    cardContainer.prepend(
-      createCardElement({ text: titelInput.value, image: imageInput.value })
+    const newCard = new Card(
+      { text: titelInput.value, image: imageInput.value },
+      "#card-template"
     );
+    const cardElement = newCard.generateCard();
+    cardContainer.prepend(cardElement);
+
     closePopup(addCardPopup);
     addForm.reset();
     addFormValidator.resetValidationError();
   }
-
-  function createCardElement(card) {
-    const cardTemplate = document
-      .querySelector("#card-template")
-      .content.querySelector(".gallery__card");
-    const cardElement = cardTemplate.cloneNode(true);
-    const cardImage = cardElement.querySelector(".gallery__card-image");
-    const cardTitle = cardElement.querySelector(".gallery__card-place");
-
-    cardImage.style.backgroundImage = `url(${card.image})`;
-    cardTitle.textContent = card.text;
-
-    cardImage.addEventListener("click", () => openImagePreview(card));
-
-    const likeButton = cardElement.querySelector(".gallery__card-like_button");
-    const trashButton = cardElement.querySelector(
-      ".gallery__card-trash-button"
-    );
-
-    likeButton.addEventListener("click", function (evt) {
-      evt.target.classList.toggle("gallery__card-like_button_active");
-    });
-
-    trashButton.addEventListener("click", function () {
-      cardElement.remove(cardElement);
-    });
-
-    return cardElement;
-  }
+  /// New Card Handler ///
 
   /// Edit Profile From ///
 

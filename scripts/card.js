@@ -36,7 +36,7 @@ const initialCards = [
 /// Consts ///
 export const cardContainer = document.querySelector(".gallery__container");
 /// Classes ///
-class Card {
+export class Card {
   constructor(data, cardSelector) {
     this._text = data.text;
     this._image = data.image;

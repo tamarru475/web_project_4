@@ -77,7 +77,6 @@ imagePopupCloseButton.addEventListener("click", () => closePopup(imagePopup));
 /// Export ///
 export {
   openPopup,
-  openImagePreview,
   closePopup,
   imagePopup,
   editProfilePopup,
