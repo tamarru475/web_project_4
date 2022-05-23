@@ -1,40 +1,8 @@
-import {
-  imagePopup,
-  openPopup,
-  closePopup,
-  imagePopupCloseButton,
-} from "./utils.js";
-
-/// arays ///
-const initialCards = [
-  {
-    text: "Yosemite Valley",
-    image: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-  {
-    text: "Lake Louise",
-    image: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    text: "Bald Mountains",
-    image: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
-    text: "Latemar",
-    image: "https://code.s3.yandex.net/web-code/latemar.jpg",
-  },
-  {
-    text: "Vanoise National Park",
-    image: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
-    text: "Lago di Braies",
-    image: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-];
+import { openPopup } from "./utils.js";
 
 /// Consts ///
 export const cardContainer = document.querySelector(".gallery__container");
+export const imagePopup = document.querySelector(".image");
 /// Classes ///
 export class Card {
   constructor(data, cardSelector) {
@@ -78,22 +46,19 @@ export class Card {
       this._openImagePreview();
     });
 
-    imagePopupCloseButton.addEventListener("click", () => {
-      this._closeImagePreview();
-    });
+    likeButton.addEventListener("click", this._handleLikeClick);
 
-    likeButton.addEventListener("click", (evt) => {
-      evt.target.classList.toggle("gallery__card-like_button_active");
-    });
-
-    trashButton.addEventListener("click", () => {
-      this._handleTrashClick();
-    });
+    trashButton.addEventListener("click", this._handleTrashClick);
   }
 
-  _handleTrashClick() {
-    this._element.remove(this._element);
-  }
+  _handleLikeClick = (evt) => {
+    evt.target.classList.toggle("gallery__card-like_button_active");
+  };
+
+  _handleTrashClick = () => {
+    this._element.remove();
+    this._element = null;
+  };
 
   _openImagePreview() {
     const imagePopupImage = imagePopup.querySelector(".image__popup");
@@ -106,16 +71,9 @@ export class Card {
 
     openPopup(imagePopup);
   }
-
-  _closeImagePreview() {
-    closePopup(imagePopup);
-  }
 }
 
-initialCards.forEach((item) => {
-  const card = new Card(item, "#card-template");
-
-  const cardElement = card.generateCard();
-
-  cardContainer.append(cardElement);
-});
+export function createCard(cardData) {
+  const card = new Card(cardData, "#card-template");
+  return card.generateCard();
+}

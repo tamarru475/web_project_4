@@ -1,17 +1,3 @@
-///// popups////
-const editProfilePopup = document.querySelector(".edit");
-const addCardPopup = document.querySelector(".add");
-const imagePopup = document.querySelector(".image");
-
-/////buttons///
-const profileEditButton = document.querySelector(".profile__edit-button");
-const profilePopupCloseButton = editProfilePopup.querySelector(
-  ".edit__close-button"
-);
-const profileAddButton = document.querySelector(".profile__add-button");
-const cardPopupCloseButton = addCardPopup.querySelector(".add__close-button");
-const imagePopupCloseButton = imagePopup.querySelector(".image__close-button");
-
 //// Popup functions////
 function openPopup(popupModel) {
   popupModel.classList.add("popup_fadein");
@@ -44,34 +30,5 @@ function closePopupWhenEsc(evt) {
   }
 }
 
-/////event listeners/////
-
-/// Edit Profile Popup ///
-
-profileEditButton.addEventListener("click", () => openPopup(editProfilePopup));
-
-profilePopupCloseButton.addEventListener("click", () =>
-  closePopup(editProfilePopup)
-);
-
-/// Add Card Popup ///
-
-profileAddButton.addEventListener("click", () => openPopup(addCardPopup));
-
-cardPopupCloseButton.addEventListener("click", () => closePopup(addCardPopup));
-
-/// Image Popup ///
-
-imagePopupCloseButton.addEventListener("click", () => closePopup(imagePopup));
-
 /// Export ///
-export {
-  openPopup,
-  closePopup,
-  imagePopup,
-  editProfilePopup,
-  addCardPopup,
-  profileEditButton,
-  cardPopupCloseButton,
-  imagePopupCloseButton,
-};
+export { openPopup, closePopup };
