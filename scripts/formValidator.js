@@ -39,7 +39,7 @@ class FormValidator {
       this._hideInputError(inputElement);
     });
 
-    this._toggleButtonState();
+    this.toggleButtonState();
   }
 
   _checkInputValidity(inputElement) {
@@ -60,7 +60,7 @@ class FormValidator {
     });
   }
 
-  _toggleButtonState() {
+  toggleButtonState() {
     const inputList = Array.from(
       this._element.querySelectorAll(this._inputSelector)
     );
@@ -84,12 +84,13 @@ class FormValidator {
     this._element.addEventListener("submit", function (evt) {
       evt.preventDefault();
     });
+    this.toggleButtonState();
 
     inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
 
-        this._toggleButtonState();
+        this.toggleButtonState();
       });
     });
   }

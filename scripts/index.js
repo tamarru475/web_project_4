@@ -16,13 +16,7 @@ import FormValidator from "./formValidator.js";
   const editForm = document.querySelector(".edit__form");
   const addForm = addCardPopup.querySelector(".add__form");
 
-  /////Form Buttons///
-  const formButton = document.querySelector(".form__button");
-
-  //wrappers///
-
   //Inputs//
-
   const nameInput = document.getElementById("name-input");
   const jobInput = document.getElementById("job-input");
 
@@ -34,9 +28,11 @@ import FormValidator from "./formValidator.js";
 
   /// Form Functions ///
 
-  function fillProfileForm() {
+  function fillEditForm() {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
+
+    editFormValidator.toggleButtonState();
   }
 
   function handleProfileEditFormSubmit(evt) {
@@ -72,7 +68,7 @@ import FormValidator from "./formValidator.js";
 
   /// Edit Profile From ///
 
-  profileEditButton.addEventListener("click", fillProfileForm);
+  profileEditButton.addEventListener("click", fillEditForm);
 
   editForm.addEventListener("submit", handleProfileEditFormSubmit);
 
