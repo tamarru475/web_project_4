@@ -1,10 +1,10 @@
 import { openPopup } from "./utils.js";
 
 /// Consts ///
-export const cardContainer = document.querySelector(".gallery__container");
+
 export const imagePopup = document.querySelector(".image");
 /// Classes ///
-export class Card {
+class Card {
   constructor(data, cardSelector) {
     this._text = data.text;
     this._image = data.image;

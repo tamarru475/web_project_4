@@ -1,7 +1,7 @@
 //// Imports ////
 import { openPopup, closePopup } from "./utils.js";
 
-import { cardContainer, Card, imagePopup, createCard } from "./card.js";
+import { imagePopup, createCard } from "./card.js";
 
 import FormValidator from "./formValidator.js";
 
@@ -18,7 +18,9 @@ const profileAddButton = document.querySelector(".profile__add-button");
 const cardPopupCloseButton = addCardPopup.querySelector(".add__close-button");
 const imagePopupCloseButton = imagePopup.querySelector(".image__close-button");
 
-//// decleratoins /////
+//// Wraapers /////
+
+const cardContainer = document.querySelector(".gallery__container");
 
 ///// Forms ////
 const editForm = document.querySelector(".edit__form");
