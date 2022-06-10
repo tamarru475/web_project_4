@@ -13,24 +13,12 @@
   width: 100vw;
   height: 100vh;
   z-index: 5;
+  transition: 0.3s linear;
 }
 
 .popup_fadein {
   visibility: visible;
   opacity: 1;
-  transition: visibility 0.3s linear, opacity 0.3s linear;
-}
-
-.popup_fadeout {
-  margin: 0 auto;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0.8s linear, opacity 0.8s linear;
-  position: fixed;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  justify-content: center;
-  align-items: center;
 }
 
 .add__container {

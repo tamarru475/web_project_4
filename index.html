@@ -30,7 +30,10 @@
         </section>
         <section class="edit" id="edit">
           <div class="edit__container container">
-            <button type="button" class="edit__close-button"></button>
+            <button
+              type="button"
+              class="edit__close-button close-button"
+            ></button>
             <div class="edit__form-container">
               <h2 class="edit__header">Edit profile</h2>
               <form class="edit__form form" name="edit" novalidate>
@@ -67,7 +70,10 @@
         </section>
         <section class="add" id="add-popup">
           <div class="add__container container">
-            <button type="button" class="add__close-button"></button>
+            <button
+              type="button"
+              class="add__close-button close-button"
+            ></button>
             <div class="add__form-container">
               <h2 class="add__header">New place</h2>
               <form class="add__form form" name="add" novalidate>
@@ -107,7 +113,10 @@
         </section>
         <section class="image" id="image-popup">
           <div class="image__container container">
-            <button type="button" class="image__close-button"></button>
+            <button
+              type="button"
+              class="image__close-button close-button"
+            ></button>
             <img class="image__popup" src="#" alt="" />
             <p class="image__discription"></p>
           </div>
@@ -127,9 +136,9 @@
         </div>
       </li>
     </template>
-    <script type="module" src="./scripts/index.js"></script>
-    <script type="module" src="./scripts/card.js"></script>
-    <script type="module" src="./scripts/utils.js"></script>
-    <script type="module" src="./scripts/formValidator.js"></script>
+    <script type="module" src="./scripts/pages/index.js"></script>
+    <script type="module" src="./scripts/components/card.js"></script>
+    <script type="module" src="./scripts/utils/utils.js"></script>
+    <script type="module" src="./scripts/utils/formValidator.js"></script>
   </body>
 </html>

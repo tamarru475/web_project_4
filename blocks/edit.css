@@ -13,18 +13,13 @@
   width: 100vw;
   height: 100vh;
   z-index: 5;
+  transition: 0.3s linear;
 }
 
 .popup_fadein {
   visibility: visible;
   opacity: 1;
   transition: visibility 0.3s linear, opacity 0.3s linear;
-}
-
-.popup_fadeout {
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0.8s linear, opacity 0.8s linear;
 }
 
 .edit__container {

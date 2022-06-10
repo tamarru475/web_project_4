@@ -1,14 +1,11 @@
-import { openPopup } from "./utils.js";
-
-/// Consts ///
-
-export const imagePopup = document.querySelector(".image");
 /// Classes ///
 class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._text = data.text;
     this._image = data.image;
     this._cardSelector = cardSelector;
+
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -59,18 +56,6 @@ class Card {
     this._element.remove();
     this._element = null;
   };
-
-  _openImagePreview() {
-    const imagePopupImage = imagePopup.querySelector(".image__popup");
-    const imagePopupDecription = imagePopup.querySelector(
-      ".image__discription"
-    );
-    imagePopupImage.src = this._image;
-    imagePopupImage.alt = this._text;
-    imagePopupDecription.textContent = this._text;
-
-    openPopup(imagePopup);
-  }
 }
 
 export function createCard(cardData) {
