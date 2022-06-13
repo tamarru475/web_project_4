@@ -1,29 +1,29 @@
 ///// popups////
-export const editProfilePopup = document.querySelector(".edit");
-export const addCardPopup = document.querySelector(".add");
+export const editProfileModule = document.querySelector(".edit");
+export const addCardModule = document.querySelector(".add");
 export const imagePopup = document.querySelector(".image");
 
 /////buttons///
 export const profileEditButton = document.querySelector(
   ".profile__edit-button"
 );
-export const profilePopupCloseButton = editProfilePopup.querySelector(
+export const profilePopupCloseButton = editProfileModule.querySelector(
   ".edit__close-button"
 );
 export const profileAddButton = document.querySelector(".profile__add-button");
 export const cardPopupCloseButton =
-  addCardPopup.querySelector(".add__close-button");
+  addCardModule.querySelector(".add__close-button");
 export const imagePopupCloseButton = imagePopup.querySelector(
   ".image__close-button"
 );
 
 //// Wraapers /////
-
+export const cardsContainer = document.getElementById("gallery-container");
 export const cardContainer = document.querySelector(".gallery__container");
 
 ///// Forms ////
 export const editForm = document.querySelector(".edit__form");
-export const addForm = addCardPopup.querySelector(".add__form");
+export const addForm = addCardModule.querySelector(".add__form");
 
 //Inputs//
 export const nameInput = document.getElementById("name-input");

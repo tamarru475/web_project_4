@@ -1,10 +1,12 @@
 import Section from "../components/section.js";
 
-import PopupWithForm from "../components/popup-with-form";
-
 import { createCard } from "../components/card.js";
 
 import FormValidator from "../utils/formValidator.js";
+
+import PopupWithForm from "../components/popup-with-form.js";
+
+import UserInfo from "../components/user-info.js";
 
 import {
   initialCards,
@@ -12,46 +14,57 @@ import {
   cardContainer,
   addForm,
   editForm,
-  profileName,
-  profileJob,
-  editProfilePopup,
-  addCardPopup,
-  nameInput,
-  jobInput,
-} from "../utils/constats.js";
+  editProfileModule,
+  addCardModule,
+  profileAddButton,
+  profileEditButton,
+} from "../utils/constants.js";
 
-initialCards.forEach((item) => {
-  const cardElement = createCard(item);
-  cardContainer.append(cardElement);
-});
+const initialCardsList = new Section(
+  {
+    data: initialCards,
+    renderer: (item) => {
+      const cardElement = createCard(item);
+
+      initialCardsList.addItem(cardElement);
+    },
+  },
+  cardContainer
+);
+
+initialCardsList.renderItems();
 
 /// Form Functions ///
 
-function handleProfileEditFormSubmit(evt) {
-  evt.preventDefault();
+const editProfilePopup = new PopupWithForm(editProfileModule, (inputValues) => {
+  const profileInfo = new UserInfo(inputValues.name, inputValues.job);
 
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
+  profileInfo.setUserInfo();
+  profileInfo.getUserInfo();
+  editProfilePopup.close();
+});
 
-  closePopup(editProfilePopup);
-}
-
-function handleCardFormSubmit(evt) {
-  evt.preventDefault();
-
-  const titelInput = document.getElementById("title-input");
-  const imageInput = document.getElementById("imagelink-input");
-
+const addCardPopup = new PopupWithForm(addCardModule, (inputValues) => {
   const cardElement = createCard({
-    text: titelInput.value,
-    image: imageInput.value,
+    text: inputValues.title,
+    image: inputValues.image,
   });
   cardContainer.prepend(cardElement);
 
-  closePopup(addCardPopup);
-  addForm.reset();
+  addCardPopup.close();
   addFormValidator.resetValidationError();
-}
+});
+
+editProfilePopup.setEventListeners();
+addCardPopup.setEventListeners();
+
+profileEditButton.addEventListener("click", () => {
+  editProfilePopup.open();
+});
+
+profileAddButton.addEventListener("click", () => {
+  addCardPopup.open();
+});
 
 const editFormValidator = new FormValidator(defaultConfig, editForm);
 const addFormValidator = new FormValidator(defaultConfig, addForm);

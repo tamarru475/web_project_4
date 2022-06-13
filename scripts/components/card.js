@@ -1,11 +1,13 @@
 /// Classes ///
-class Card {
-  constructor(data, cardSelector, handleCardClick) {
+import { imagePopupModle } from "./popup-with-image.js";
+
+export class Card {
+  constructor(data, cardSelector, clickImageHandler) {
     this._text = data.text;
     this._image = data.image;
     this._cardSelector = cardSelector;
 
-    this._handleCardClick = handleCardClick;
+    this._clickImageHandler = clickImageHandler;
   }
 
   _getTemplate() {
@@ -39,9 +41,7 @@ class Card {
     );
     const cardImage = this._element.querySelector(".gallery__card-image");
 
-    cardImage.addEventListener("click", () => {
-      this._openImagePreview();
-    });
+    cardImage.addEventListener("click", () => this._clickImageHandler());
 
     likeButton.addEventListener("click", this._handleLikeClick);
 
@@ -59,6 +59,9 @@ class Card {
 }
 
 export function createCard(cardData) {
-  const card = new Card(cardData, "#card-template");
+  const card = new Card(cardData, "#card-template", () => {
+    imagePopupModle.open(cardData.image, cardData.text);
+    imagePopupModle.setEventListeners();
+  });
   return card.generateCard();
 }

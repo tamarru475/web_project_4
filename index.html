@@ -22,13 +22,19 @@
             />
             <div class="profile__info">
               <h1 class="profile__name" id="profile-name">Jacques Cousteau</h1>
-              <button type="button" class="profile__edit-button"></button>
+              <button
+                type="button"
+                class="profile__edit-button profile-button"
+              ></button>
               <p class="profile__name-discription" id="profile-job">Explorer</p>
             </div>
           </div>
-          <button type="button" class="profile__add-button"></button>
+          <button
+            type="button"
+            class="profile__add-button profile-button"
+          ></button>
         </section>
-        <section class="edit" id="edit">
+        <section class="edit popup" id="edit">
           <div class="edit__container container">
             <button
               type="button"
@@ -54,7 +60,7 @@
                     type="text"
                     id="job-input"
                     placeholder="Explorer"
-                    name="about"
+                    name="job"
                     minlength="2"
                     maxlength="200"
                     required
@@ -68,7 +74,7 @@
             </div>
           </div>
         </section>
-        <section class="add" id="add-popup">
+        <section class="add popup" id="add-popup">
           <div class="add__container container">
             <button
               type="button"
@@ -109,9 +115,9 @@
           </div>
         </section>
         <section class="gallery">
-          <ul class="gallery__container"></ul>
+          <ul class="gallery__container" id="gallery-container"></ul>
         </section>
-        <section class="image" id="image-popup">
+        <section class="image popup" id="image-popup">
           <div class="image__container container">
             <button
               type="button"
@@ -136,9 +142,20 @@
         </div>
       </li>
     </template>
+    <script type="module" src="./scripts/utils/constants.js"></script>
     <script type="module" src="./scripts/pages/index.js"></script>
+    <script type="module" src="./scripts/components/section.js"></script>
     <script type="module" src="./scripts/components/card.js"></script>
-    <script type="module" src="./scripts/utils/utils.js"></script>
+    <script type="module" src="./scripts/components/popup.js"></script>
+    <script
+      type="module"
+      src="./scripts/components/popup-with-form.js"
+    ></script>
+    <script
+      type="module"
+      src="./scripts/components/popup-with-image.js"
+    ></script>
+    <script type="module" src="./scripts/components/user-info.js"></script>
     <script type="module" src="./scripts/utils/formValidator.js"></script>
   </body>
 </html>
