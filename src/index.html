@@ -5,18 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Around The U.S</title>
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <img src="./images/logo.svg" alt="Around The U.S" class="logo" />
+        <img
+          src="<%=require('./images/logo.svg')%>"
+          alt="Around The U.S"
+          class="logo"
+        />
       </header>
       <main class="main">
         <section class="profile">
           <div class="profile__container">
             <img
-              src="./images/profile_image.jpg"
+              src="<%=require('./images/profile_image.jpg')%>"
               alt="profile picture"
               class="profile__image"
             />
@@ -142,20 +145,5 @@
         </div>
       </li>
     </template>
-    <script type="module" src="./scripts/utils/constants.js"></script>
-    <script type="module" src="./scripts/pages/index.js"></script>
-    <script type="module" src="./scripts/components/section.js"></script>
-    <script type="module" src="./scripts/components/card.js"></script>
-    <script type="module" src="./scripts/components/popup.js"></script>
-    <script
-      type="module"
-      src="./scripts/components/popup-with-form.js"
-    ></script>
-    <script
-      type="module"
-      src="./scripts/components/popup-with-image.js"
-    ></script>
-    <script type="module" src="./scripts/components/user-info.js"></script>
-    <script type="module" src="./scripts/utils/formValidator.js"></script>
   </body>
 </html>

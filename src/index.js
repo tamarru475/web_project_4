@@ -1,12 +1,14 @@
-import Section from "../components/section.js";
+import "./styles/index.css";
 
-import { createCard } from "../components/card.js";
+import Section from "./scripts/components/section.js";
 
-import FormValidator from "../utils/formValidator.js";
+import { createCard } from "./scripts/components/card.js";
 
-import PopupWithForm from "../components/popup-with-form.js";
+import FormValidator from "./scripts/utils/formValidator.js";
 
-import UserInfo from "../components/user-info.js";
+import PopupWithForm from "./scripts/components/popup-with-form.js";
+
+import UserInfo from "./scripts/components/user-info.js";
 
 import {
   initialCards,
@@ -18,7 +20,7 @@ import {
   addCardModule,
   profileAddButton,
   profileEditButton,
-} from "../utils/constants.js";
+} from "./scripts/utils/constants.js";
 
 const initialCardsList = new Section(
   {
