@@ -22,10 +22,13 @@ export default class Popup {
 
   setEventListeners() {
     this._popupSelector.addEventListener("click", (evt) => {
-      if (
-        evt.target === evt.currentTarget ||
-        evt.target.classList.contains("close-button")
-      ) {
+      if (evt.target.classList.contains("close-button")) {
+        this.close();
+      }
+    });
+
+    this._popupSelector.addEventListener("mousedown", (evt) => {
+      if (evt.target === evt.currentTarget) {
         this.close();
       }
     });

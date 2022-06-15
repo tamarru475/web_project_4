@@ -55,7 +55,7 @@
 }
 
 .profile__edit-button {
-  background: url(../images/Edit__Button-1.svg) no-repeat center/cover;
+  background: url("../images/Edit__Button-1.svg") no-repeat center/cover;
   color: inherit;
   border: none;
   margin-top: 15px;

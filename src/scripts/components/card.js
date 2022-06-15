@@ -1,13 +1,13 @@
 /// Classes ///
 import { imagePopupModle } from "./popup-with-image.js";
 
-export class Card {
-  constructor(data, cardSelector, clickImageHandler) {
+export default class Card {
+  constructor(data, cardSelector, handleImageClick) {
     this._text = data.text;
     this._image = data.image;
     this._cardSelector = cardSelector;
 
-    this._clickImageHandler = clickImageHandler;
+    this._handleImageClick = handleImageClick;
   }
 
   _getTemplate() {
@@ -41,7 +41,7 @@ export class Card {
     );
     const cardImage = this._element.querySelector(".gallery__card-image");
 
-    cardImage.addEventListener("click", () => this._clickImageHandler());
+    cardImage.addEventListener("click", () => this._handleImageClick());
 
     likeButton.addEventListener("click", this._handleLikeClick);
 
@@ -56,12 +56,4 @@ export class Card {
     this._element.remove();
     this._element = null;
   };
-}
-
-export function createCard(cardData) {
-  const card = new Card(cardData, "#card-template", () => {
-    imagePopupModle.open(cardData.image, cardData.text);
-    imagePopupModle.setEventListeners();
-  });
-  return card.generateCard();
 }

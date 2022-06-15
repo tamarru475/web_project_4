@@ -1,12 +1,6 @@
 import Popup from "./popup.js";
 
-import { imagePopup } from "../utils/constants.js";
-
 export class PopupWithImage extends Popup {
-  constructor(popupSelector) {
-    super(popupSelector);
-  }
-
   open(image, text) {
     const imagePopupImage = this._popupSelector.querySelector(".image__popup");
     const imagePopupDecription = this._popupSelector.querySelector(
@@ -19,5 +13,3 @@ export class PopupWithImage extends Popup {
     super.open();
   }
 }
-
-export const imagePopupModle = new PopupWithImage(imagePopup);
