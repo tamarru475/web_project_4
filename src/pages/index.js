@@ -1,16 +1,16 @@
-import "./pages/index.css";
+import "./index.css";
 
-import Section from "./scripts/components/section.js";
+import Section from "../scripts/components/section.js";
 
-import Card from "./scripts/components/card.js";
+import Card from "../scripts/components/card.js";
 
-import FormValidator from "./scripts/components/formValidator.js";
+import FormValidator from "../scripts/components/formValidator.js";
 
-import PopupWithForm from "./scripts/components/popup-with-form.js";
+import PopupWithForm from "../scripts/components/popup-with-form.js";
 
-import { PopupWithImage } from "./scripts/components/popup-with-image.js";
+import { PopupWithImage } from "../scripts/components/popup-with-image.js";
 
-import UserInfo from "./scripts/components/user-info.js";
+import UserInfo from "../scripts/components/user-info.js";
 
 import {
   initialCards,
@@ -22,8 +22,10 @@ import {
   addCardModule,
   profileAddButton,
   profileEditButton,
+  nameInput,
+  jobInput,
   imagePopup,
-} from "./scripts/utils/constants.js";
+} from "../scripts/utils/constants.js";
 
 const imagePopupModle = new PopupWithImage(imagePopup);
 
@@ -78,6 +80,10 @@ addCardPopup.setEventListeners();
 imagePopupModle.setEventListeners();
 
 profileEditButton.addEventListener("click", () => {
+  const formInputs = profileInfo.getUserInfo();
+  nameInput.value = formInputs.name;
+  jobInput.value = formInputs.job;
+
   editProfilePopup.open();
 });
 
