@@ -1,10 +1,10 @@
 /// Classes ///
-import { imagePopupModle } from "./popup-with-image.js";
 
 export default class Card {
   constructor(data, cardSelector, handleImageClick) {
-    this._text = data.text;
-    this._image = data.image;
+    this._text = data.name;
+    this._image = data.link;
+    this._likes = data.likes;
     this._cardSelector = cardSelector;
 
     this._handleImageClick = handleImageClick;
@@ -49,7 +49,29 @@ export default class Card {
   }
 
   _handleLikeClick = (evt) => {
+    const likeCounter = this._element.querySelector(
+      ".gallery__card-like_counter"
+    );
+
     evt.target.classList.toggle("gallery__card-like_button_active");
+
+    if (evt.target.classList.contains("gallery__card-like_button_active")) {
+      this._likes.push(1);
+    } else {
+      this._likes.pop();
+    }
+
+    let sum = 0;
+
+    for (let i = 0; i < this._likes.length; i++) {
+      sum += this._likes[i];
+    }
+
+    if (sum === 0) {
+      likeCounter.textContent = "";
+    } else {
+      likeCounter.textContent = sum;
+    }
   };
 
   _handleTrashClick = () => {

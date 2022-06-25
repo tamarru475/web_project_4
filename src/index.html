@@ -18,18 +18,14 @@
       <main class="main">
         <section class="profile">
           <div class="profile__container">
-            <img
-              src="<%=require('./images/profile_image.jpg')%>"
-              alt="profile picture"
-              class="profile__image"
-            />
+            <img src="#" alt="profile picture" class="profile__image" />
             <div class="profile__info">
-              <h1 class="profile__name" id="profile-name">Jacques Cousteau</h1>
+              <h1 class="profile__name" id="profile-name"></h1>
               <button
                 type="button"
                 class="profile__edit-button profile-button"
               ></button>
-              <p class="profile__name-discription" id="profile-job">Explorer</p>
+              <p class="profile__name-discription" id="profile-job"></p>
             </div>
           </div>
           <button
@@ -141,7 +137,10 @@
         <button type="button" class="gallery__card-trash-button"></button>
         <div class="gallery__card-footer">
           <h2 class="gallery__card-place"></h2>
-          <button type="button" class="gallery__card-like_button"></button>
+          <div class="gallery__card-like">
+            <button type="button" class="gallery__card-like_button"></button>
+            <div class="gallery__card-like_counter"></div>
+          </div>
         </div>
       </li>
     </template>

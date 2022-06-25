@@ -32,6 +32,7 @@ export const jobInput = document.getElementById("job-input");
 // Const Elements //
 export const profileName = document.querySelector(".profile__name");
 export const profileJob = document.querySelector(".profile__name-discription");
+export const avatarImage = document.querySelector(".profile__image");
 
 /// Card Rendering  ///
 

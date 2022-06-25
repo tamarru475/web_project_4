@@ -89,6 +89,14 @@
   overflow: hidden;
 }
 
+.gallery__card-like {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+
 .gallery__card-like_button {
   display: inline-block;
   background: url(../images/like_button.svg) no-repeat center/cover;
@@ -112,6 +120,18 @@
 
 .gallery__card-like_button_active {
   background: url(../images/like-button_active.svg) no-repeat center/cover;
+}
+
+.gallery__card-like_counter {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #000000;
+  align-self: center;
+  margin-right: 15px;
 }
 
 @media screen and (max-width: 960px) {

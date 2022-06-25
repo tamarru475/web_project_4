@@ -13,7 +13,6 @@ import { PopupWithImage } from "../scripts/components/popup-with-image.js";
 import UserInfo from "../scripts/components/user-info.js";
 
 import {
-  initialCards,
   defaultConfig,
   cardContainer,
   addForm,
@@ -22,33 +21,80 @@ import {
   addCardModule,
   profileAddButton,
   profileEditButton,
+  profileName,
+  profileJob,
   nameInput,
+  avatarImage,
   jobInput,
   imagePopup,
 } from "../scripts/utils/constants.js";
+
+fetch("https://around.nomoreparties.co/v1/cohort-3-en/users/me", {
+  headers: {
+    authorization: "6a85a377-e76e-4e72-85a9-79ee5208e36a",
+  },
+})
+  .then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(`Something went wrong: ${res.status}`);
+    }
+  })
+
+  .then((user) => {
+    profileName.textContent = user.name;
+    profileJob.textContent = user.about;
+    avatarImage.src = user.avatar;
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+  .finally(console.log("is that what we were after?"));
+
+fetch("https://around.nomoreparties.co/v1/cohort-3-en/cards", {
+  headers: {
+    authorization: "6a85a377-e76e-4e72-85a9-79ee5208e36a",
+  },
+})
+  .then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(`Something went wrong: ${res.status}`);
+    }
+  })
+
+  .then((initialCards) => {
+    const cardsList = new Section(
+      {
+        data: initialCards,
+        renderer: (item) => {
+          const cardElement = createCard(item);
+
+          cardsList.addItem(cardElement);
+        },
+      },
+      cardContainer
+    );
+
+    cardsList.renderItems();
+    console.log(initialCards);
+  })
+
+  .catch((err) => {
+    console.log(err);
+  })
+  .finally(() => console.log("is that what we were after?"));
 
 const imagePopupModle = new PopupWithImage(imagePopup);
 
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template", () => {
-    imagePopupModle.open(cardData.image, cardData.text);
+    imagePopupModle.open(cardData.link, cardData.name);
   });
   return card.generateCard();
 }
-
-const cardsList = new Section(
-  {
-    data: initialCards,
-    renderer: (item) => {
-      const cardElement = createCard(item);
-
-      cardsList.addItem(cardElement);
-    },
-  },
-  cardContainer
-);
-
-cardsList.renderItems();
 
 /// Form Functions ///
 
@@ -60,29 +106,57 @@ const profileInfo = new UserInfo({
 const editProfilePopup = new PopupWithForm(editProfileModule, (inputValues) => {
   profileInfo.setUserInfo({ name: inputValues.name, job: inputValues.job });
   editProfilePopup.close();
+  fetch("https://around.nomoreparties.co/v1/cohort-3-en/users/me", {
+    method: "PATCH",
+    headers: {
+      authorization: "6a85a377-e76e-4e72-85a9-79ee5208e36a",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: inputValues.name,
+      about: inputValues.job,
+    }),
+  });
 });
 
 const addCardPopup = new PopupWithForm(addCardModule, (inputValues) => {
   const cardElement = createCard({
-    text: inputValues.title,
-    image: inputValues.image,
+    name: inputValues.title,
+    link: inputValues.image,
   });
 
-  cardsList.addItem(cardElement);
+  cardContainer.prepend(cardElement);
 
   addCardPopup.close();
   addForm.reset();
   addFormValidator.resetValidationError();
+
+  fetch("https://around.nomoreparties.co/v1/cohort-3-en/cards", {
+    method: "POST",
+    headers: {
+      authorization: "6a85a377-e76e-4e72-85a9-79ee5208e36a",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: inputValues.title,
+      link: inputValues.image,
+    }),
+  });
 });
 
 editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
 imagePopupModle.setEventListeners();
 
+function fillInfoForm(info) {
+  nameInput.value = info.name;
+  jobInput.value = info.job;
+}
+
 profileEditButton.addEventListener("click", () => {
   const formInputs = profileInfo.getUserInfo();
-  nameInput.value = formInputs.name;
-  jobInput.value = formInputs.job;
+
+  fillInfoForm(formInputs);
 
   editProfilePopup.open();
 });
