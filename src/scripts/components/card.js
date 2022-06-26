@@ -1,13 +1,15 @@
 /// Classes ///
 
 export default class Card {
-  constructor(data, cardSelector, handleImageClick) {
+  constructor(data, cardSelector, handleImageClick, handleTrashClick) {
     this._text = data.name;
     this._image = data.link;
     this._likes = data.likes;
+    this._id = data.id;
     this._cardSelector = cardSelector;
 
     this._handleImageClick = handleImageClick;
+    this._handleTrashClick = handleTrashClick;
   }
 
   _getTemplate() {
@@ -45,7 +47,9 @@ export default class Card {
 
     likeButton.addEventListener("click", this._handleLikeClick);
 
-    trashButton.addEventListener("click", this._handleTrashClick);
+    trashButton.addEventListener("click", () =>
+      this._handleTrashClick(this._id)
+    );
   }
 
   _handleLikeClick = (evt) => {
@@ -72,10 +76,5 @@ export default class Card {
     } else {
       likeCounter.textContent = sum;
     }
-  };
-
-  _handleTrashClick = () => {
-    this._element.remove();
-    this._element = null;
   };
 }

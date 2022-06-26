@@ -2,6 +2,7 @@
 export const editProfileModule = document.querySelector(".edit");
 export const addCardModule = document.querySelector(".add");
 export const imagePopup = document.querySelector(".image");
+export const deletePopup = document.querySelector(".delete");
 
 /////buttons///
 export const profileEditButton = document.querySelector(

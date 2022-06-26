@@ -6,6 +6,8 @@ import Card from "../scripts/components/card.js";
 
 import FormValidator from "../scripts/components/formValidator.js";
 
+import PopupWithButton from "../scripts/components/popup-with-Button.js";
+
 import PopupWithForm from "../scripts/components/popup-with-form.js";
 
 import { PopupWithImage } from "../scripts/components/popup-with-image.js";
@@ -27,72 +29,52 @@ import {
   avatarImage,
   jobInput,
   imagePopup,
+  deletePopup,
 } from "../scripts/utils/constants.js";
 
-fetch("https://around.nomoreparties.co/v1/cohort-3-en/users/me", {
+import Api from "../scripts/components/api.js";
+
+/// apis and initial load
+
+const apiUserInfo = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en/users/me",
   headers: {
     authorization: "6a85a377-e76e-4e72-85a9-79ee5208e36a",
+    "Content-Type": "application/json",
   },
-})
-  .then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Something went wrong: ${res.status}`);
-    }
-  })
+});
 
-  .then((user) => {
-    profileName.textContent = user.name;
-    profileJob.textContent = user.about;
-    avatarImage.src = user.avatar;
-  })
-  .catch((err) => {
-    console.log(err);
-  })
-  .finally(console.log("is that what we were after?"));
+apiUserInfo.getUserInfo(profileName, profileJob, avatarImage);
 
-fetch("https://around.nomoreparties.co/v1/cohort-3-en/cards", {
+const apiCards = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en/cards",
   headers: {
     authorization: "6a85a377-e76e-4e72-85a9-79ee5208e36a",
+    "Content-Type": "application/json",
   },
-})
-  .then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Something went wrong: ${res.status}`);
-    }
-  })
+});
 
-  .then((initialCards) => {
-    const cardsList = new Section(
-      {
-        data: initialCards,
-        renderer: (item) => {
-          const cardElement = createCard(item);
-
-          cardsList.addItem(cardElement);
-        },
-      },
-      cardContainer
-    );
-
-    cardsList.renderItems();
-    console.log(initialCards);
-  })
-
-  .catch((err) => {
-    console.log(err);
-  })
-  .finally(() => console.log("is that what we were after?"));
+apiCards.getInitialCards(Section, cardContainer, createCard);
 
 const imagePopupModle = new PopupWithImage(imagePopup);
+const deletePopupModle = new PopupWithButton(deletePopup, () => {
+  console.log("what now?");
+  deletePopupModle.close();
+});
+
+/// initial load functions ///
 
 function createCard(cardData) {
-  const card = new Card(cardData, "#card-template", () => {
-    imagePopupModle.open(cardData.link, cardData.name);
-  });
+  const card = new Card(
+    cardData,
+    "#card-template",
+    () => {
+      imagePopupModle.open(cardData.link, cardData.name);
+    },
+    () => {
+      deletePopupModle.open();
+    }
+  );
   return card.generateCard();
 }
 
@@ -106,17 +88,7 @@ const profileInfo = new UserInfo({
 const editProfilePopup = new PopupWithForm(editProfileModule, (inputValues) => {
   profileInfo.setUserInfo({ name: inputValues.name, job: inputValues.job });
   editProfilePopup.close();
-  fetch("https://around.nomoreparties.co/v1/cohort-3-en/users/me", {
-    method: "PATCH",
-    headers: {
-      authorization: "6a85a377-e76e-4e72-85a9-79ee5208e36a",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name: inputValues.name,
-      about: inputValues.job,
-    }),
-  });
+  apiUserInfo.sendUserInfo(inputValues);
 });
 
 const addCardPopup = new PopupWithForm(addCardModule, (inputValues) => {
@@ -130,23 +102,13 @@ const addCardPopup = new PopupWithForm(addCardModule, (inputValues) => {
   addCardPopup.close();
   addForm.reset();
   addFormValidator.resetValidationError();
-
-  fetch("https://around.nomoreparties.co/v1/cohort-3-en/cards", {
-    method: "POST",
-    headers: {
-      authorization: "6a85a377-e76e-4e72-85a9-79ee5208e36a",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name: inputValues.title,
-      link: inputValues.image,
-    }),
-  });
+  apiCards.sendNewCard(inputValues);
 });
 
 editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
 imagePopupModle.setEventListeners();
+deletePopupModle.setEventListeners();
 
 function fillInfoForm(info) {
   nameInput.value = info.name;
