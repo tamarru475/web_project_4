@@ -1,15 +1,21 @@
 /// Classes ///
 
 export default class Card {
-  constructor(data, cardSelector, handleImageClick, handleTrashClick) {
+  constructor(
+    { data, handleImageClick, handleTrashClick, handleLikeClick },
+    cardSelector,
+    userId
+  ) {
     this._text = data.name;
     this._image = data.link;
     this._likes = data.likes;
-    this._id = data.id;
+    this._id = data._id;
     this._cardSelector = cardSelector;
+    this._userId = userId;
 
     this._handleImageClick = handleImageClick;
     this._handleTrashClick = handleTrashClick;
+    this._handleLikeClick = handleLikeClick;
   }
 
   _getTemplate() {
@@ -27,9 +33,19 @@ export default class Card {
 
     const cardImage = this._element.querySelector(".gallery__card-image");
     const cardTitle = this._element.querySelector(".gallery__card-place");
+    const likeCounter = this._element.querySelector(
+      ".gallery__card-like_counter"
+    );
 
     cardImage.style.backgroundImage = `url(${this._image})`;
     cardTitle.textContent = this._text;
+    likeCounter.textContent = this._likes.length;
+
+    const isLiked = this._likes.some((person) => person._id === this._userId);
+
+    if (isLiked) {
+      this.likeCard(this._likes);
+    }
 
     return this._element;
   }
@@ -45,36 +61,33 @@ export default class Card {
 
     cardImage.addEventListener("click", () => this._handleImageClick());
 
-    likeButton.addEventListener("click", this._handleLikeClick);
+    likeButton.addEventListener("click", () => this._handleLikeClick(this._id));
 
     trashButton.addEventListener("click", () =>
       this._handleTrashClick(this._id)
     );
   }
 
-  _handleLikeClick = (evt) => {
+  isLiked() {
+    return this._likes.some((person) => person._id === this._userId);
+  }
+
+  likeCard(newLikes) {
+    this._likes = newLikes;
+    const likeButton = this._element.querySelector(
+      ".gallery__card-like_button"
+    );
     const likeCounter = this._element.querySelector(
       ".gallery__card-like_counter"
     );
 
-    evt.target.classList.toggle("gallery__card-like_button_active");
+    likeCounter.textContent = this._likes.length;
 
-    if (evt.target.classList.contains("gallery__card-like_button_active")) {
-      this._likes.push(1);
-    } else {
-      this._likes.pop();
-    }
+    likeButton.classList.toggle("gallery__card-like_button_active");
+  }
 
-    let sum = 0;
-
-    for (let i = 0; i < this._likes.length; i++) {
-      sum += this._likes[i];
-    }
-
-    if (sum === 0) {
-      likeCounter.textContent = "";
-    } else {
-      likeCounter.textContent = sum;
-    }
-  };
+  removeCard() {
+    this._element.remove();
+    this._element = null;
+  }
 }

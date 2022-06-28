@@ -6,7 +6,7 @@ import Card from "../scripts/components/card.js";
 
 import FormValidator from "../scripts/components/formValidator.js";
 
-import PopupWithButton from "../scripts/components/popup-with-Button.js";
+import PopupWithSubmit from "../scripts/components/popup-with-submit.js";
 
 import PopupWithForm from "../scripts/components/popup-with-form.js";
 
@@ -17,17 +17,18 @@ import UserInfo from "../scripts/components/user-info.js";
 import {
   defaultConfig,
   cardContainer,
+  avatarImage,
+  avatarForm,
   addForm,
   editForm,
+  editAvatarModule,
   editProfileModule,
   addCardModule,
   profileAddButton,
   profileEditButton,
-  profileName,
-  profileJob,
   nameInput,
-  avatarImage,
   jobInput,
+  avatarInput,
   imagePopup,
   deletePopup,
 } from "../scripts/utils/constants.js";
@@ -36,44 +37,86 @@ import Api from "../scripts/components/api.js";
 
 /// apis and initial load
 
-const apiUserInfo = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en/users/me",
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
   headers: {
     authorization: "6a85a377-e76e-4e72-85a9-79ee5208e36a",
     "Content-Type": "application/json",
   },
 });
 
-apiUserInfo.getUserInfo(profileName, profileJob, avatarImage);
+let userId;
 
-const apiCards = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en/cards",
-  headers: {
-    authorization: "6a85a377-e76e-4e72-85a9-79ee5208e36a",
-    "Content-Type": "application/json",
-  },
-});
+Promise.all([api.getInitialCards(), api.getUserInfo()]).then(
+  ([cardData, userData]) => {
+    userId = userData._id;
+    const cardsList = new Section(
+      {
+        data: cardData,
+        renderer: (item) => {
+          const cardElement = createCard(item);
 
-apiCards.getInitialCards(Section, cardContainer, createCard);
+          if (item.owner._id !== userId) {
+            const trashButton = cardElement.querySelector(
+              ".gallery__card-trash-button"
+            );
+            trashButton.classList.remove("gallery__card-trash-button_active");
+          }
+
+          cardsList.addItem(cardElement);
+        },
+      },
+      cardContainer
+    );
+
+    cardsList.renderItems();
+
+    profileInfo.setUserInfo({
+      name: userData.name,
+      job: userData.about,
+    });
+
+    profileInfo.setUserAvatar({
+      avatar: userData.avatar,
+    });
+  }
+);
 
 const imagePopupModle = new PopupWithImage(imagePopup);
-const deletePopupModle = new PopupWithButton(deletePopup, () => {
-  console.log("what now?");
-  deletePopupModle.close();
-});
+const deletePopupModle = new PopupWithSubmit(deletePopup);
 
 /// initial load functions ///
 
 function createCard(cardData) {
   const card = new Card(
-    cardData,
-    "#card-template",
-    () => {
-      imagePopupModle.open(cardData.link, cardData.name);
+    {
+      data: cardData,
+      handleImageClick: () => {
+        imagePopupModle.open(cardData.link, cardData.name);
+      },
+      handleTrashClick: (id) => {
+        deletePopupModle.open();
+        deletePopupModle.setAction(() => {
+          card.removeCard();
+          api.deleteCard(id);
+        });
+      },
+      handleLikeClick: (id) => {
+        const alreadyLiked = card.isLiked();
+
+        if (alreadyLiked) {
+          api.unlikeCard(id).then((res) => {
+            card.likeCard(res.likes);
+          });
+        } else {
+          api.likeCard(id).then((res) => {
+            card.likeCard(res.likes);
+          });
+        }
+      },
     },
-    () => {
-      deletePopupModle.open();
-    }
+    "#card-template",
+    userId
   );
   return card.generateCard();
 }
@@ -83,37 +126,51 @@ function createCard(cardData) {
 const profileInfo = new UserInfo({
   nameSelector: ".profile__name",
   jobSelector: ".profile__name-discription",
+  avatarSelector: ".profile__image",
+});
+
+const editAvatarPopup = new PopupWithForm(editAvatarModule, (inputValue) => {
+  profileInfo.setUserAvatar(inputValue);
+  editAvatarPopup.close();
+  api.sendUserAavatar(inputValue);
 });
 
 const editProfilePopup = new PopupWithForm(editProfileModule, (inputValues) => {
   profileInfo.setUserInfo({ name: inputValues.name, job: inputValues.job });
   editProfilePopup.close();
-  apiUserInfo.sendUserInfo(inputValues);
+  api.sendUserInfo(inputValues);
 });
 
 const addCardPopup = new PopupWithForm(addCardModule, (inputValues) => {
-  const cardElement = createCard({
-    name: inputValues.title,
-    link: inputValues.image,
+  api.sendNewCard(inputValues).then((card) => {
+    const cardsElement = createCard(card);
+    cardContainer.prepend(cardsElement);
   });
-
-  cardContainer.prepend(cardElement);
 
   addCardPopup.close();
   addForm.reset();
   addFormValidator.resetValidationError();
-  apiCards.sendNewCard(inputValues);
 });
 
 editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
 imagePopupModle.setEventListeners();
 deletePopupModle.setEventListeners();
+editAvatarPopup.setEventListeners();
 
 function fillInfoForm(info) {
   nameInput.value = info.name;
   jobInput.value = info.job;
+  avatarInput.value = info.avatar;
 }
+
+avatarImage.addEventListener("click", () => {
+  const formInputs = profileInfo.getUserInfo();
+
+  fillInfoForm(formInputs);
+
+  editAvatarPopup.open();
+});
 
 profileEditButton.addEventListener("click", () => {
   const formInputs = profileInfo.getUserInfo();
@@ -127,8 +184,10 @@ profileAddButton.addEventListener("click", () => {
   addCardPopup.open();
 });
 
+const avatarFromValidator = new FormValidator(defaultConfig, avatarForm);
 const editFormValidator = new FormValidator(defaultConfig, editForm);
 const addFormValidator = new FormValidator(defaultConfig, addForm);
 
+avatarFromValidator.enableValidation();
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();

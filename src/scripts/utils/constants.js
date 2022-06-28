@@ -1,4 +1,5 @@
 ///// popups////
+export const editAvatarModule = document.querySelector(".avatar");
 export const editProfileModule = document.querySelector(".edit");
 export const addCardModule = document.querySelector(".add");
 export const imagePopup = document.querySelector(".image");
@@ -25,10 +26,12 @@ export const cardContainer = document.querySelector(".gallery__container");
 ///// Forms ////
 export const editForm = document.querySelector(".edit__form");
 export const addForm = addCardModule.querySelector(".add__form");
+export const avatarForm = document.querySelector(".avatar__form");
 
 //Inputs//
 export const nameInput = document.getElementById("name-input");
 export const jobInput = document.getElementById("job-input");
+export const avatarInput = document.getElementById("avatar-input");
 
 // Const Elements //
 export const profileName = document.querySelector(".profile__name");

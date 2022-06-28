@@ -1,34 +1,28 @@
+const customFetch = (url, header) =>
+  fetch(url, header)
+    .then((res) =>
+      res.ok
+        ? res.json()
+        : Promise.reject(`Something went wrong: ${res.status}`)
+    )
+    .catch((err) => {
+      console.log(err);
+    });
+
 export default class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
   }
 
-  getUserInfo(profileName, profileJob, avatarImage) {
-    fetch(this._baseUrl, {
+  getUserInfo() {
+    return customFetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Something went wrong: ${res.status}`);
-        }
-      })
-
-      .then((user) => {
-        profileName.textContent = user.name;
-        profileJob.textContent = user.about;
-        avatarImage.src = user.avatar;
-      })
-
-      .catch((err) => {
-        console.log(err);
-      });
+    });
   }
 
   sendUserInfo(inputValues) {
-    fetch(this._baseUrl, {
+    return customFetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -38,47 +32,51 @@ export default class Api {
     });
   }
 
-  getInitialCards(section, cardContainer, createCard) {
-    fetch(this._baseUrl, {
+  sendUserAavatar(inputValues) {
+    return customFetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
       headers: this._headers,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Something went wrong: ${res.status}`);
-        }
-      })
+      body: JSON.stringify({
+        avatar: inputValues.avatar,
+      }),
+    });
+  }
 
-      .then((initialCards) => {
-        const cardsList = new section(
-          {
-            data: initialCards,
-            renderer: (item) => {
-              const cardElement = createCard(item);
-
-              cardsList.addItem(cardElement);
-            },
-          },
-          cardContainer
-        );
-
-        cardsList.renderItems();
-      })
-
-      .catch((err) => {
-        console.log(err);
-      });
+  getInitialCards() {
+    return customFetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
+    });
   }
 
   sendNewCard(inputValues) {
-    fetch(this._baseUrl, {
+    return customFetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
         name: inputValues.title,
         link: inputValues.image,
       }),
+    });
+  }
+
+  deleteCard(cardId) {
+    return customFetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    });
+  }
+
+  likeCard(cardId) {
+    return customFetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: "PUT",
+      headers: this._headers,
+    });
+  }
+
+  unlikeCard(cardId) {
+    return customFetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
     });
   }
 }

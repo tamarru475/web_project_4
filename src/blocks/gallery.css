@@ -40,7 +40,7 @@
   position: absolute;
   top: 18px;
   right: 15px;
-  display: inline-block;
+  display: none;
   background: url(../images/trash-icon-2.svg) no-repeat center/cover;
   color: inherit;
   border: none;
@@ -53,6 +53,10 @@
   outline: inherit;
   align-self: center;
   transition: opacity 0.1s ease-in-out;
+}
+
+.gallery__card-trash-button_active {
+  display: inline-block;
 }
 
 .gallery__card-trash-button:hover {

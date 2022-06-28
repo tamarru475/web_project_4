@@ -1,4 +1,4 @@
-.delete {
+.avatar {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -21,17 +21,18 @@
   opacity: 1;
 }
 
-.delete__container {
+.avatar__container {
   display: flex;
   flex-direction: column;
-  max-width: 470px;
-  width: 100%;
+  align-items: flex-end;
+  width: 470px;
 }
 
-.delete__close-button {
-  display: flex;
-  align-self: flex-end;
+.avatar__close-button {
   max-width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
   margin-bottom: 3px;
   background: url(../images/Close_Icon.svg) no-repeat center/cover;
   color: inherit;
@@ -46,24 +47,22 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.delete__content-container {
+.avatar__close-button:hover {
+  opacity: 0.6;
+  transform: rotate(45deg);
+}
+
+.avatar__form-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 430px;
-  width: 100%;
+  align-self: flex-start;
+  width: 430px;
   border-radius: 10px;
   background-color: white;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
 }
 
-.delete__close-button:hover {
-  opacity: 0.6;
-  transform: rotate(45deg);
-}
-
-.delete__header {
+.avatar__header {
   margin: 0;
   font-family: "Inter", sans-serif;
   font-size: 24px;
@@ -74,70 +73,32 @@
   text-align: left;
   color: #000000;
   align-self: flex-start;
-  padding-top: 34px;
+  padding-top: 36px;
   padding-left: 36px;
 }
 
-.delete__form {
-  margin-bottom: 0 0 36px 0;
-  padding: 0 0 0 0;
-}
-
-.delete__button {
-  display: block;
-  background: #000000;
-  border-radius: 2px;
-  color: #ffffff;
-  font-family: "Inter", sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px;
-  letter-spacing: 0em;
-  text-align: center;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
-  min-height: 50.15px;
-  width: 358px;
-  transition: opacity 0.3s ease-in-out;
-  margin: 38px 0 0 0;
-}
-
-.delete__button:hover {
-  opacity: 0.8;
-}
-
 @media screen and (max-width: 600px) {
-  .delete {
+  .avatar {
     max-width: 282px;
   }
 
-  .delete__container {
+  .avatar__container {
     width: 282px;
   }
 
-  .delete__close-button {
+  .avatar__close-button {
     margin-bottom: 13.5px;
     width: 26px;
     height: 26px;
   }
 
-  .delete__content-container {
+  .avatar__form-container {
     width: 100%;
   }
 
-  .delete__header {
+  .avatar__header {
     font-size: 18px;
     line-height: 22px;
     padding-left: 22px;
-  }
-
-  .delete__button {
-    font-size: 14px;
-    line-height: 17px;
-    width: 100%;
   }
 }
