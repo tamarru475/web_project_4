@@ -97,8 +97,12 @@ function createCard(cardData) {
       handleTrashClick: (id) => {
         deletePopupModle.open();
         deletePopupModle.setAction(() => {
-          card.removeCard();
-          api.deleteCard(id);
+          deletePopupModle.renderLoading(true);
+          api.deleteCard(id).finally(() => {
+            deletePopupModle.renderLoading(false);
+            card.removeCard();
+            deletePopupModle.close();
+          });
         });
       },
       handleLikeClick: (id) => {
@@ -130,26 +134,38 @@ const profileInfo = new UserInfo({
 });
 
 const editAvatarPopup = new PopupWithForm(editAvatarModule, (inputValue) => {
-  profileInfo.setUserAvatar(inputValue);
-  editAvatarPopup.close();
-  api.sendUserAavatar(inputValue);
+  editAvatarPopup.renderLoading(true);
+  api.sendUserAavatar(inputValue).finally(() => {
+    editAvatarPopup.renderLoading(false);
+    profileInfo.setUserAvatar(inputValue);
+    editAvatarPopup.close();
+  });
 });
 
 const editProfilePopup = new PopupWithForm(editProfileModule, (inputValues) => {
-  profileInfo.setUserInfo({ name: inputValues.name, job: inputValues.job });
-  editProfilePopup.close();
-  api.sendUserInfo(inputValues);
+  editProfilePopup.renderLoading(true);
+  api.sendUserInfo(inputValues).finally(() => {
+    editProfilePopup.renderLoading(false);
+    profileInfo.setUserInfo({ name: inputValues.name, job: inputValues.job });
+    editProfilePopup.close();
+  });
 });
 
 const addCardPopup = new PopupWithForm(addCardModule, (inputValues) => {
-  api.sendNewCard(inputValues).then((card) => {
-    const cardsElement = createCard(card);
-    cardContainer.prepend(cardsElement);
-  });
-
-  addCardPopup.close();
-  addForm.reset();
-  addFormValidator.resetValidationError();
+  addCardPopup.renderLoading(true);
+  console.log("is Loading");
+  api
+    .sendNewCard(inputValues)
+    .then((card) => {
+      const cardsElement = createCard(card);
+      cardContainer.prepend(cardsElement);
+    })
+    .finally(() => {
+      addCardPopup.renderLoading(false);
+      addCardPopup.close();
+      addForm.reset();
+      addFormValidator.resetValidationError();
+    });
 });
 
 editProfilePopup.setEventListeners();
