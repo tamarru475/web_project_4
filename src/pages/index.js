@@ -47,21 +47,15 @@ const api = new Api({
 
 let userId;
 
-Promise.all([api.getInitialCards(), api.getUserInfo()]).then(
-  ([cardData, userData]) => {
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+  .then(([cardData, userData]) => {
     userId = userData._id;
+    console.log(cardData);
     const cardsList = new Section(
       {
         data: cardData,
         renderer: (item) => {
           const cardElement = createCard(item);
-
-          if (item.owner._id !== userId) {
-            const trashButton = cardElement.querySelector(
-              ".gallery__card-trash-button"
-            );
-            trashButton.classList.remove("gallery__card-trash-button_active");
-          }
 
           cardsList.addItem(cardElement);
         },
@@ -79,8 +73,10 @@ Promise.all([api.getInitialCards(), api.getUserInfo()]).then(
     profileInfo.setUserAvatar({
       avatar: userData.avatar,
     });
-  }
-);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const imagePopupModle = new PopupWithImage(imagePopup);
 const deletePopupModle = new PopupWithSubmit(deletePopup);
@@ -98,24 +94,41 @@ function createCard(cardData) {
         deletePopupModle.open();
         deletePopupModle.setAction(() => {
           deletePopupModle.renderLoading(true);
-          api.deleteCard(id).finally(() => {
-            deletePopupModle.renderLoading(false);
-            card.removeCard();
-            deletePopupModle.close();
-          });
+          api
+            .deleteCard(id)
+            .then(() => {
+              card.removeCard();
+              deletePopupModle.close();
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+            .finally(() => {
+              deletePopupModle.renderLoading(false);
+            });
         });
       },
       handleLikeClick: (id) => {
         const alreadyLiked = card.isLiked();
 
         if (alreadyLiked) {
-          api.unlikeCard(id).then((res) => {
-            card.likeCard(res.likes);
-          });
+          api
+            .unlikeCard(id)
+            .then((res) => {
+              card.updateLikes(res.likes);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         } else {
-          api.likeCard(id).then((res) => {
-            card.likeCard(res.likes);
-          });
+          api
+            .likeCard(id)
+            .then((res) => {
+              card.updateLikes(res.likes);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
       },
     },
@@ -135,30 +148,46 @@ const profileInfo = new UserInfo({
 
 const editAvatarPopup = new PopupWithForm(editAvatarModule, (inputValue) => {
   editAvatarPopup.renderLoading(true);
-  api.sendUserAavatar(inputValue).finally(() => {
-    editAvatarPopup.renderLoading(false);
-    profileInfo.setUserAvatar(inputValue);
-    editAvatarPopup.close();
-  });
+  api
+    .sendUserAavatar(inputValue)
+    .then(() => {
+      profileInfo.setUserAvatar(inputValue);
+      editAvatarPopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      editAvatarPopup.renderLoading(false);
+    });
 });
 
 const editProfilePopup = new PopupWithForm(editProfileModule, (inputValues) => {
   editProfilePopup.renderLoading(true);
-  api.sendUserInfo(inputValues).finally(() => {
-    editProfilePopup.renderLoading(false);
-    profileInfo.setUserInfo({ name: inputValues.name, job: inputValues.job });
-    editProfilePopup.close();
-  });
+  api
+    .sendUserInfo(inputValues)
+    .then(() => {
+      profileInfo.setUserInfo({ name: inputValues.name, job: inputValues.job });
+      editProfilePopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      editProfilePopup.renderLoading(false);
+    });
 });
 
 const addCardPopup = new PopupWithForm(addCardModule, (inputValues) => {
   addCardPopup.renderLoading(true);
-  console.log("is Loading");
   api
     .sendNewCard(inputValues)
     .then((card) => {
       const cardsElement = createCard(card);
       cardContainer.prepend(cardsElement);
+    })
+    .catch((err) => {
+      console.log(err);
     })
     .finally(() => {
       addCardPopup.renderLoading(false);

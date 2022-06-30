@@ -10,6 +10,7 @@ export default class Card {
     this._image = data.link;
     this._likes = data.likes;
     this._id = data._id;
+    this._owner = data.owner;
     this._cardSelector = cardSelector;
     this._userId = userId;
 
@@ -36,16 +37,19 @@ export default class Card {
     const likeCounter = this._element.querySelector(
       ".gallery__card-like_counter"
     );
+    const trashButton = this._element.querySelector(
+      ".gallery__card-trash-button"
+    );
 
     cardImage.style.backgroundImage = `url(${this._image})`;
     cardTitle.textContent = this._text;
     likeCounter.textContent = this._likes.length;
 
-    const isLiked = this._likes.some((person) => person._id === this._userId);
-
-    if (isLiked) {
-      this.likeCard(this._likes);
+    if (this._owner._id !== this._userId) {
+      trashButton.classList.remove("gallery__card-trash-button_active");
     }
+
+    this._renderLikes();
 
     return this._element;
   }
@@ -72,18 +76,25 @@ export default class Card {
     return this._likes.some((person) => person._id === this._userId);
   }
 
-  likeCard(newLikes) {
-    this._likes = newLikes;
+  updateLikes(likes) {
+    this._likes = likes;
+    this._renderLikes();
+  }
+
+  _renderLikes() {
     const likeButton = this._element.querySelector(
       ".gallery__card-like_button"
     );
     const likeCounter = this._element.querySelector(
       ".gallery__card-like_counter"
     );
-
     likeCounter.textContent = this._likes.length;
 
-    likeButton.classList.toggle("gallery__card-like_button_active");
+    if (this.isLiked()) {
+      likeButton.classList.add("gallery__card-like_button_active");
+    } else {
+      likeButton.classList.remove("gallery__card-like_button_active");
+    }
   }
 
   removeCard() {

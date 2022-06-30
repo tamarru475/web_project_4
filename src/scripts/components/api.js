@@ -1,13 +1,7 @@
 const customFetch = (url, header) =>
-  fetch(url, header)
-    .then((res) =>
-      res.ok
-        ? res.json()
-        : Promise.reject(`Something went wrong: ${res.status}`)
-    )
-    .catch((err) => {
-      console.log(err);
-    });
+  fetch(url, header).then((res) =>
+    res.ok ? res.json() : Promise.reject(`Something went wrong: ${res.status}`)
+  );
 
 export default class Api {
   constructor({ baseUrl, headers }) {

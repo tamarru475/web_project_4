@@ -4,18 +4,19 @@ export default class PopupWithSubmit extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
     this._formSelector = popupSelector.querySelector(".form");
-    this._submitButton = popupSelector.querySelector(".delete__button");
+    this._submitButton = popupSelector.querySelector(".submit__button");
+    this._text = this._submitButton.textContent;
   }
 
   setAction(action) {
-    this._submitHandler = action;
+    this._handleSubmit = action;
   }
 
   setEventListeners() {
     this._formSelector.addEventListener("submit", (evt) => {
       evt.preventDefault();
 
-      this._submitHandler();
+      this._handleSubmit();
     });
 
     super.setEventListeners();
@@ -25,7 +26,7 @@ export default class PopupWithSubmit extends Popup {
     if (isLoading) {
       this._submitButton.textContent = "Deleting...";
     } else {
-      this._submitButton.textContent = "Yes";
+      this._submitButton.textContent = this._text;
     }
   }
 }
