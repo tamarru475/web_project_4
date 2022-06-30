@@ -43,7 +43,6 @@ export default class Card {
 
     cardImage.style.backgroundImage = `url(${this._image})`;
     cardTitle.textContent = this._text;
-    likeCounter.textContent = this._likes.length;
 
     if (this._owner._id !== this._userId) {
       trashButton.classList.remove("gallery__card-trash-button_active");

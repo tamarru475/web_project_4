@@ -50,7 +50,6 @@ let userId;
 Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([cardData, userData]) => {
     userId = userData._id;
-    console.log(cardData);
     const cardsList = new Section(
       {
         data: cardData,
@@ -185,15 +184,15 @@ const addCardPopup = new PopupWithForm(addCardModule, (inputValues) => {
     .then((card) => {
       const cardsElement = createCard(card);
       cardContainer.prepend(cardsElement);
+      addCardPopup.close();
+      addForm.reset();
+      addFormValidator.resetValidationError();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
       addCardPopup.renderLoading(false);
-      addCardPopup.close();
-      addForm.reset();
-      addFormValidator.resetValidationError();
     });
 });
 
@@ -203,16 +202,20 @@ imagePopupModle.setEventListeners();
 deletePopupModle.setEventListeners();
 editAvatarPopup.setEventListeners();
 
-function fillInfoForm(info) {
+function fillUserInfoForm(info) {
   nameInput.value = info.name;
   jobInput.value = info.job;
+  avatarInput.value = info.avatar;
+}
+
+function fillAvatarForm(info) {
   avatarInput.value = info.avatar;
 }
 
 avatarImage.addEventListener("click", () => {
   const formInputs = profileInfo.getUserInfo();
 
-  fillInfoForm(formInputs);
+  fillAvatarForm(formInputs);
 
   editAvatarPopup.open();
 });
@@ -220,7 +223,7 @@ avatarImage.addEventListener("click", () => {
 profileEditButton.addEventListener("click", () => {
   const formInputs = profileInfo.getUserInfo();
 
-  fillInfoForm(formInputs);
+  fillUserInfoForm(formInputs);
 
   editProfilePopup.open();
 });
